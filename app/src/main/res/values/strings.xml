@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">NOMBRE_APP</string>
+    <string name="app_name">MeFalta</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
     <string name="nav_header_title">Android Studio</string>
@@ -11,15 +11,57 @@
     <string name="menu_lists">Lista de compras</string>
     <string name="menu_economy">Administración económica</string>
     <string name="menu_categories">Categoria</string>
-    <string name="hello_blank_fragment">Hello blank fragment</string>
 
+    <!-- * Title Bars-->
     <string name="actionBarTitle_AlterProduct_create">Registrar producto</string>
     <string name="actionBarTitle_AlterProduct_edit">Modificar producto</string>
-    <!--    <string name="title_activity_login">LoginActivity</string>-->
-    <!--    <string name="action_sign_in">Sign in or register</string>-->
-    <!--    <string name="action_sign_in_short">Sign in</string>-->
-    <!--    <string name="welcome">"Welcome !"</string>-->
-    <!--    <string name="invalid_username">Not a valid username</string>-->
-    <!--    <string name="invalid_password">Password must be >5 characters</string>-->
-    <!--    <string name="login_failed">"Login failed"</string>-->
+    <string name="actionBarTitle_AlterList_create">Registrar Listar</string>
+    <string name="actionBarTitle_AlterList_edit">Modificar lista</string>
+
+    <!-- * Confirm Dialogs-->
+    <string name="dialog_title_exit">Salir</string>
+    <string name="dialog_title_back">Regresar</string>
+    <string name="dialog_title_delete">Eliminar</string>
+
+    <string name="dialog_ques_exit">¿Cerrar de la aplicaión?</string>
+    <string name="dialog_ques_back_missing_data">¿Regresar? Se perderá los datos llenados.</string>
+    <string name="dialog_ques_deleting">Se eliminará:</string>
+
+    <string name="dialog_ans_yes">Si</string>
+    <string name="dialog_ans_continue">Continuar</string>
+    <string name="dialog_ans_confirm">Confirmar</string>
+    <string name="dialog_ans_no">No</string>
+
+    <!--   * Producto-->
+    <string name="product_registered">Producto REGISTRADO</string>
+    <string name="product_registered_fail">ERROR registrando</string>
+    <string name="product_updated">Producto ACTUALIZADO</string>
+    <string name="product_updated_fail">ERROR actualizando</string>
+    <string name="product_deleted">Producto ELIMINADO</string>
+    <string name="product_deteled_fail">ERROR eliminando</string>
+    <!--   * Lista-->
+    <string name="list_registered">Lista REGISTRADA</string>
+    <string name="list_registered_fail">ERROR registrando</string>
+    <string name="list_updated">Lista ACTUALIZADA</string>
+    <string name="list_updated_fail">ERROR actualizando</string>
+    <string name="list_deleted">Lista ELIMINADA</string>
+    <string name="list_deteled_fail">ERROR eliminando</string>
+    <!--   * Lista-->
+    <string name="categoria_registered">Categoria REGISTRADA</string>
+    <string name="categoria_registered_fail">ERROR registrando</string>
+    <string name="categoria_updated">Categoria ACTUALIZADA</string>
+    <string name="categoria_updated_fail">ERROR actualizando</string>
+    <string name="categoria_deleted">Categoria ELIMINADA</string>
+    <string name="categoria_deteled_fail">ERROR eliminando</string>
+    <!--   * Relationship Classes-->
+    <string name="relaClass_insert_fail">ER. insert-RelaClass</string>
+    <string name="relaClass_delete_fail">ER. delete-RelaClass</string>
+
+
+    <!--   * User's errors-->
+    <string name="error_txtNombre_empty">Debe completar el campo nombre.</string>
+    <string name="error_txtNombre_long">El nombre no debe de ser mayor a 48 caracteres.</string>
+    <string name="error_txtNombre_producto_repeated">Ya existe un producto con ese nombre.</string>
+    <string name="error_txtNombre_lista_repeated">Ya existe una lista con ese nombre.</string>
+    <string name="error_txtNombre_categoria_repeated">Ya existe una etiqueta con ese nombre.</string>
 </resources>

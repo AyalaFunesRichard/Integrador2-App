@@ -63,6 +63,11 @@
         <item name="android:fontFamily">sans-serif-light</item>
     </style>
 
+    <style name="Text_Normal_Emphasized" parent="Text_Base">
+        <item name="android:layout_marginTop">2sp</item>
+        <item name="android:fontFamily">sans-serif-light</item>
+    </style>
+
     <style name="TextFor_RecyView_Item" parent="Text_Base">
         <item name="android:layout_gravity">center_vertical</item>
         <item name="android:layout_marginRight">16sp</item>
@@ -166,24 +171,6 @@
     </style>
 
     <!---->
-    <!-- BUTTONS -> for basic input -->
-<!--    <style name="Btn_forBasicOptions_cancel" parent="Btn_forBasicOptions">-->
-<!--        <item name="android:layout_marginRight">16sp</item>-->
-<!--        <item name="android:text">CANCELAR</item>-->
-<!--    </style>-->
-
-<!--    <style name="Btn_forBasicOptions_register" parent="Btn_forBasicOptions">-->
-<!--        <item name="android:text">REGISTRAR</item>-->
-<!--        <item name="android:paddingLeft">28sp</item>-->
-<!--        <item name="android:paddingRight">28sp</item>-->
-
-<!--        <item name="android:layout_gravity">center_vertical|right</item>-->
-<!--        <item name="android:foregroundGravity">center_vertical|right</item>-->
-
-<!--        <item name="android:layout_weight">1</item>-->
-<!--    </style>-->
-
-    <!---->
     <!-- BUTTON -> full icon-->
     <style name="Btn_fullIcon_edit" parent="Btn_fullIcon">
         <item name="android:src">@drawable/ic_button_edit</item>
@@ -203,5 +190,17 @@
 
     <style name="Btn_fullIcon_moreOptions" parent="Btn_fullIcon">
         <item name="android:src">@drawable/ic_button_more</item>
+    </style>
+
+    <style name="Btn_fullIcon_filter" parent="Btn_fullIcon">
+        <item name="android:src">@drawable/ic_button_filter</item>
+    </style>
+
+    <style name="Btn_fullIcon_return" parent="Btn_fullIcon">
+        <item name="android:src">@drawable/ic_button_back</item>
+    </style>
+
+    <style name="Btn_fullIcon_list_ready" parent="Btn_fullIcon">
+        <item name="android:src">@drawable/ic_button_list_ready</item>
     </style>
 </resources>

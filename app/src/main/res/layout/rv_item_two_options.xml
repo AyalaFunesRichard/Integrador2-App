@@ -3,20 +3,23 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:layout_marginBottom="16sp"
     android:clickable="false">
 
 
     <EditText
         android:id="@+id/etRV_itemName"
-        style="@style/ETFor_RecyView_Item"/>
+        style="@style/ETFor_RecyView_Item"
+        android:textColor="#000000"
+        android:textColorHint="#000000" />
 
     <ImageButton
-        android:id="@+id/iBtnRV_delete"
+        android:id="@+id/iBtn_rvItemTwoOptio_left"
         style="@style/Btn_fullIcon_delete"
         android:layout_marginRight="16sp" />
-    <ImageButton
 
-        android:id="@+id/iBtnRV_edit"
+    <ImageButton
+        android:id="@+id/iBtn_rvItemTwoOptio_right"
         style="@style/Btn_fullIcon_edit" />
 
 </LinearLayout>

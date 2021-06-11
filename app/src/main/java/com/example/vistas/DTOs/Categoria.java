@@ -9,13 +9,27 @@ public class Categoria {
     private ArrayList<Producto> lstProductos;
 
     private int estado;
-    private String log_fecha_modificado;
     private String log_fecha_creado;
+    private String log_fecha_modificado;
 
     /**
      * CONSTRUCTORS ->
      */
-    public Categoria() {
+//    public Categoria() {
+//    }
+
+    public Categoria(int idCategoria, String nombre) {
+        this.idCategoria = idCategoria;
+        this.nombre = nombre;
+    }
+
+    public Categoria(int idCategoria, String nombre, ArrayList<Producto> lstProductos, int estado, String log_fecha_creado, String log_fecha_modificado) {
+        this.idCategoria = idCategoria;
+        this.nombre = nombre;
+        this.lstProductos = lstProductos;
+        this.estado = estado;
+        this.log_fecha_creado = log_fecha_creado;
+        this.log_fecha_modificado = log_fecha_modificado;
     }
 
     /**

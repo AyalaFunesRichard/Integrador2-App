@@ -1,9 +1,10 @@
 package com.example.vistas.DTOs;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Producto {
+public class Producto implements Serializable {
     private int idProducto;
     private String nombre;
 
@@ -11,15 +12,24 @@ public class Producto {
     private ArrayList<Categoria> lstCategoria;
 
     private int estado;
-    private String log_fecha_moficado;
     private String log_fecha_creado;
+    private String log_fecha_moficado;
 
     /**
      * CONSTRUCTORS ->
      */
     public Producto(int idProducto, String nombre) {
+        // ESTE ES PARA PRUEB
         this.idProducto = idProducto;
         this.nombre = nombre;
+    }
+
+    public Producto(int idProducto, String nombre, int estado, String log_fecha_creado, String log_fecha_moficado) {
+        this.idProducto = idProducto;
+        this.nombre = nombre;
+        this.estado = estado;
+        this.log_fecha_creado = log_fecha_creado;
+        this.log_fecha_moficado = log_fecha_moficado;
     }
 
     /**

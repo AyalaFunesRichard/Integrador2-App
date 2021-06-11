@@ -1,15 +1,17 @@
 package com.example.vistas.DTOs;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Lista {
+public class Lista implements Serializable {
     private int idLista;
+    private String nombre;
     private double gasto;
     private String fechaComprado;
 
     private int estado;
-    private String log_fecha_modificado;
     private String log_fecha_creado;
+    private String log_fecha_modificado;
 
     private ArrayList<Producto> lstProductos;
 
@@ -19,9 +21,37 @@ public class Lista {
     public Lista() {
     }
 
+    public Lista(int idLista, String nombre) {
+        this.idLista = idLista;
+        this.nombre = nombre;
+    }
+
+    public Lista(String nombre, double gasto, String fechaComprado) {
+        this.nombre = nombre;
+        this.gasto = gasto;
+        this.fechaComprado = fechaComprado;
+    }
+
+    public Lista(int idLista, String nombre, double gasto, String fechaComprado, int estado, String log_fecha_creado, String log_fecha_modificado) {
+        this.idLista = idLista;
+        this.nombre = nombre;
+        this.gasto = gasto;
+        this.fechaComprado = fechaComprado;
+        this.estado = estado;
+        this.log_fecha_creado = log_fecha_creado;
+        this.log_fecha_modificado = log_fecha_modificado;
+    }
+
     /**
      * GETTERS & SETTERS ->
      */
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
     public int getIdLista() {
         return idLista;
     }

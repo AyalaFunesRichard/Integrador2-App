@@ -1,19 +1,32 @@
 package com.example.vistas.DTOs;
 
-public class Monto {
+public class Presupuesto {
 
     private int idMonto;
     private String fecha;
     private double monto;
 
     private int estado;
-    private String log_fecha_modificado;
     private String log_fecha_creado;
+    private String log_fecha_modificado;
 
     /**
      * CONSTRUCTORS ->
      */
-    public Monto() {
+    public Presupuesto(int idMonto, String fecha, double monto, int estado) {
+        this.idMonto = idMonto;
+        this.fecha = fecha;
+        this.monto = monto;
+        this.estado = estado;
+    }
+
+    public Presupuesto(int idMonto, String fecha, double monto, int estado, String log_fecha_creado, String log_fecha_modificado) {
+        this.idMonto = idMonto;
+        this.fecha = fecha;
+        this.monto = monto;
+        this.estado = estado;
+        this.log_fecha_creado = log_fecha_creado;
+        this.log_fecha_modificado = log_fecha_modificado;
     }
 
     /**

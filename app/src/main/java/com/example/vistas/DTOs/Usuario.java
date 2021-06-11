@@ -7,8 +7,8 @@ public class Usuario {
     private String nombreFamiliar;
 
     private int estado;
-    private String log_fecha_modificado;
     private String log_fecha_creado;
+    private String log_fecha_modificado;
     private String log_fecha_ultimaSesion;
 
     /**

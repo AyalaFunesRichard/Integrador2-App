@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginBottom="12sp">
+    android:layout_marginBottom="12sp"
+    tools:visibility="gone">
 
 
     <TextView
@@ -12,7 +14,13 @@
         android:text="lblRV_ItemName" />
 
     <ImageButton
-        android:id="@+id/iBtnRV_edit"
-        style="@style/Btn_fullIcon_edit" />
+        android:id="@+id/iBtn_rvItemOptio_edit"
+        style="@style/Btn_fullIcon_edit"
+        android:visibility="gone" />
+
+    <ImageButton
+        android:id="@+id/iBtn_rvItemOptio_delete"
+        style="@style/Btn_fullIcon_delete"
+        android:visibility="gone" />
 
 </LinearLayout>

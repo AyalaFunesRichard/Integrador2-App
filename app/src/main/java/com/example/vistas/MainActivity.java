@@ -1,8 +1,16 @@
 package com.example.vistas;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.Menu;
+import android.widget.Toast;
 
+import com.example.vistas.DAOs.CategoriaDAO;
+import com.example.vistas.DAOs.ListaDAO;
+import com.example.vistas.DAOs.ProductoDAO;
+import com.example.vistas.DAOs.Rela_ListaProductoDAO;
+import com.example.vistas.DAOs.Rela_ProductoCategoriaDAO;
 import com.google.android.material.navigation.NavigationView;
 
 import androidx.navigation.NavController;
@@ -23,6 +31,17 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+
+        //! ->
+        //! DUMMY DATA
+        new ListaDAO(this).DummyData_insert();
+        new ProductoDAO(this).DummyData_insert();
+        new CategoriaDAO(this).DummyData_insert();
+        new Rela_ProductoCategoriaDAO(this).DummyData_insert();
+        new Rela_ListaProductoDAO(this).DummyData_insert();
+
+
 //        FloatingActionButton fab = findViewById(R.id.fab);
 //        fab.setOnClickListener(new View.OnClickListener() {
 //            @Override
@@ -36,7 +55,7 @@ public class MainActivity extends AppCompatActivity {
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
         mAppBarConfiguration = new AppBarConfiguration.Builder(
-                R.id.nav_home, R.id.nav_gallery, R.id.nav_slideshow)
+                R.id.nav_product, R.id.nav_list, R.id.nav_economy, R.id.nav_category)
                 .setDrawerLayout(drawer)
                 .build();
         NavController navController = Navigation.findNavController(this, R.id.main_fragment_container);

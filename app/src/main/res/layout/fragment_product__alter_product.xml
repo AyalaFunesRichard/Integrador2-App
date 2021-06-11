@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Fragments.FragmentProduct_AlterProduct">
+    tools:context=".Fragments.Frag_Product__AlterProduct">
 
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -23,7 +23,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <EditText
-            android:id="@+id/editTextTextPersonName"
+            android:id="@+id/eText_fragAlteProd_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
@@ -46,34 +46,26 @@
             android:orientation="vertical"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName">
+            app:layout_constraintTop_toBottomOf="@+id/eText_fragAlteProd_name">
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:id="@+id/textView4"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_vertical"
-                    android:layout_marginRight="16sp"
-                    android:layout_weight="1"
-                    android:text="Agregar etiqueta" />
-
-                <ImageButton
-                    android:id="@+id/iBtn_FrgAltrProd_more"
-                    style="@style/Btn_fullIcon_moreOptions" />
-            </LinearLayout>
+            <TextView
+                android:id="@+id/textView4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginRight="16sp"
+                android:layout_marginBottom="16sp"
+                android:layout_weight="1"
+                android:text="Agregar etiqueta" />
 
             <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_frgAlterProduc_forCategoria"
                 android:layout_width="match_parent"
                 android:layout_height="261dp" />
         </LinearLayout>
 
         <Button
-            android:id="@+id/btn_FrgAltrProd_registrar"
+            android:id="@+id/btn_FrgAltrProd__register_confirm"
             style="@style/Btn_forBasicOptions"
             android:layout_marginEnd="16dp"
             android:layout_marginRight="16dp"
@@ -85,7 +77,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent" />
         <Button
-            android:id="@+id/btn_FrgAltrProd_cancelar"
+            android:id="@+id/btn_FrgAltrProd__register_cancel"
             style="@style/Btn_forBasicOptions"
             android:layout_marginStart="16dp"
             android:layout_marginLeft="16dp"
@@ -97,7 +89,7 @@
 
         <!---->
         <ImageButton
-            android:id="@+id/iBtn_FrgAltrProd_cancel"
+            android:id="@+id/iBtn_FrgAltrProd__edit_cancel"
             style="@style/Btn_fullIcon_cancel"
             android:layout_marginStart="24dp"
             android:layout_marginLeft="24dp"
@@ -107,18 +99,18 @@
             app:layout_constraintStart_toStartOf="parent" />
 
         <ImageButton
-            android:id="@+id/iBtn_FrgAltrProd_delete"
+            android:id="@+id/iBtn_FrgAltrProd__edit_delete"
             style="@style/Btn_fullIcon_delete"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="24dp"
             android:visibility="gone"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/iBtn_FrgAltrProd_register"
-            app:layout_constraintStart_toEndOf="@+id/iBtn_FrgAltrProd_cancel" />
+            app:layout_constraintEnd_toStartOf="@+id/iBtn_FrgAltrProd__edit_confirm"
+            app:layout_constraintStart_toEndOf="@+id/iBtn_FrgAltrProd__edit_cancel" />
 
         <ImageButton
-            android:id="@+id/iBtn_FrgAltrProd_register"
+            android:id="@+id/iBtn_FrgAltrProd__edit_confirm"
             style="@style/Btn_fullIcon_check"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
