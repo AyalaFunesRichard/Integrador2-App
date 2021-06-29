@@ -1,33 +1,39 @@
 package com.example.vistas.Fragments;
 
-import android.graphics.Color;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import androidx.annotation.ColorRes;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.vistas.Commons.CommonMethods;
 import com.example.vistas.DAOs.ListaDAO;
+import com.example.vistas.DAOs.PresupuestoDAO;
 import com.example.vistas.DTOs.Lista;
 import com.example.vistas.DTOs.Presupuesto;
-import com.example.vistas.Definitions.Code_DB;
-import com.example.vistas.Definitions.Codes;
+import com.example.vistas.Commons.Codes;
 import com.example.vistas.R;
+import com.example.vistas.RV_Adapters.RVA__Economy_TwoText;
 
-import java.text.DateFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.Month;
+import java.time.format.TextStyle;
 import java.util.ArrayList;
-import java.util.Date;
+import java.util.Locale;
 
 public class Frag_Economy__Main extends Fragment {
 
+    RecyclerView rvContainer;
+    RVA__Economy_TwoText rva_list;
+
     Presupuesto presupuesto = null;
 
-    ArrayList<Lista> listas;
+    ArrayList<Lista> lstListas;
 
     TextView lblMes, lblEstimado, lblRestante;
 
@@ -49,7 +55,9 @@ public class Frag_Economy__Main extends Fragment {
         lblEstimado = view.findViewById(R.id.lbl_frgEconomy_Monto);
         lblRestante = view.findViewById(R.id.lbl_frgEconomy_Restante);
 
-        listas = get_listas();
+        rvContainer = view.findViewById(R.id.rv_frgEconomy);
+
+        lstListas = get_listas();
 
         setUp_Presupuesto();
         //
@@ -58,13 +66,17 @@ public class Frag_Economy__Main extends Fragment {
         setUp_Mes();
         //
         update_Restante();
+        //
+        update_Listas();
 
         return view;
     }
 
     private void setUp_Presupuesto() {
-        // TODO capturar el presupuesto de este mes DAO
-        this.presupuesto = new Presupuesto(1, "19-05-2021", 1200, Codes.PRESUPUESTO_ESTADO_ACTIVO);
+        this.presupuesto = new PresupuestoDAO(getContext()).select_where_thisMonth(getContext());
+        if (presupuesto == null){
+            new CommonMethods(getContext()).show_alert("Parece que no has registrado el presupuesto de este mes...");
+        }
     }
 
     private ArrayList<Lista> get_listas() {
@@ -76,47 +88,50 @@ public class Frag_Economy__Main extends Fragment {
     }
 
     private void setUp_Estimado() {
-        lblEstimado.setText("S/ " + presupuesto.getMonto());
+        String text = "S/ " + presupuesto.getPresupuesto();
+        lblEstimado.setText(text);
     }
 
     private void setUp_Mes() {
-        String mes = "Er.Mes";
+        String monthName = "Er.Mes";
 
         try {
-//            Date date = new SimpleDateFormat("MMM");
-//            DateFormat dateFormat = new SimpleDateFormat(Code_DB.DATE_FORMART);
-//            Date date = dateFormat.parse(presupuesto.getFecha());
-//            lblMes.setText(mes);
-//
-//            DateFormat fmt = new SimpleDateFormat("MMMM dd, yyyy", Locale.US);
-//            Date d = fmt.parse("June 27,  2007");
+            Month month = LocalDate.now().getMonth();
 
-        }catch (Exception ex){
+            monthName = month.getDisplayName(TextStyle.FULL, new Locale("es", "ES"));
+
+            monthName = (monthName.charAt(0) + "").toUpperCase() + monthName.substring(1);
+
+        } catch (Exception ex) {
             System.out.println(ex);
         }
-        lblMes.setText(mes);
+        lblMes.setText(monthName);
     }
 
     private void update_Restante() {
 
         double listSum = 0;
 
-        for (int i = 0; i < listas.size(); i++) {
-            listSum += listas.get(i).getGasto();
+        for (int i = 0; i < lstListas.size(); i++) {
+            listSum += lstListas.get(i).getGasto();
         }
 
-        double differnce = presupuesto.getMonto() - listSum;
+        double differnce = presupuesto.getPresupuesto() - listSum;
 
         String msg = differnce + "";
 
         if (differnce < 0) {
-            lblEstimado.setTextColor(Color.RED);
+            lblRestante.setTextColor(ContextCompat.getColor(getContext(), R.color.wraning));
+            msg = "- " + (differnce * -1);
         }
 
-        lblEstimado.setText(msg);
+        lblRestante.setText(msg);
     }
 
     private void update_Listas() {
+        rva_list = new RVA__Economy_TwoText(getContext(), lstListas);
 
+        rvContainer.setLayoutManager(new LinearLayoutManager(getContext()));
+        rvContainer.setAdapter(rva_list);
     }
 }

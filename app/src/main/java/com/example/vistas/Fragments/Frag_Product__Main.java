@@ -3,6 +3,7 @@ package com.example.vistas.Fragments;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -15,7 +16,7 @@ import android.widget.Button;
 import com.example.vistas.DAOs.ProductoDAO;
 import com.example.vistas.DTOs.Lista;
 import com.example.vistas.DTOs.Producto;
-import com.example.vistas.Definitions.Codes;
+import com.example.vistas.Commons.Codes;
 import com.example.vistas.R;
 import com.example.vistas.RV_Adapters.RVA__ItemOption;
 
@@ -75,16 +76,8 @@ public class Frag_Product__Main extends Fragment implements RVA__ItemOption.Inte
         rvItemOption.setAdapter(rva_listado);
     }
 
-    /*
-     * ir otra frag
-     *   -> si CREAR ->
-     *   -> si EDITAR -> productoId
-     *   enviar tipo frag
-     * */
 
-    //============
-    // Moving to other fragment ->
-    //============
+    // * Moving to other fragment ->
     private void openFragment(Fragment nextFragment, String fragmentFor, Producto producto) {
 
         Bundle bundle = new Bundle();
@@ -99,8 +92,20 @@ public class Frag_Product__Main extends Fragment implements RVA__ItemOption.Inte
 
         nextFragment.setArguments(bundle);
 
-        FragmentTransaction transaction = getFragmentManager().beginTransaction();
-        transaction.replace(R.id.main_fragment_container, nextFragment).addToBackStack("tag").commit();
+//        FragmentTransaction transaction = getFragmentManager().beginTransaction();
+//        transaction.replace(R.id.main_fragment_container, nextFragment).addToBackStack("tag").commit();
+
+        FragmentManager fragmentManager = getFragmentManager ();
+        fragmentManager.beginTransaction()
+                .replace(R.id.main_fragment_container, nextFragment, null)
+                .setReorderingAllowed(true)
+                .addToBackStack("tag")
+                .commit();
+
+
+
+//        FragmentTransaction transaction = fragmentManager.beginTransaction();
+//        transaction.add()
     }
 
     @Override

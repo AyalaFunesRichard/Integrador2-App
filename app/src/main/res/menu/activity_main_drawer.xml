@@ -20,5 +20,9 @@
             android:id="@+id/nav_category"
             android:icon="@drawable/ic_menu_category__base"
             android:title="@string/menu_categories" />
+        <item
+            android:id="@+id/nav_user"
+            android:icon="@drawable/ic_menu_user__base"
+            android:title="Tu cuenta" />
     </group>
 </menu>

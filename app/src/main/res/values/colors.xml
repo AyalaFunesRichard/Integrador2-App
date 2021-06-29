@@ -5,5 +5,8 @@
     <color name="colorPrimaryDarker">#00154A</color>
 
     <color name="colorAccent">#2D82FF</color>
+    <color name="black_overlay">#66000000</color>
+    
+    <color name="wraning">#FF1E1E</color>
 
 </resources>

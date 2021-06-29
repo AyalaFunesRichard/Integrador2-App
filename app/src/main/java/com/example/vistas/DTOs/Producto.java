@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Producto implements Serializable {
-    private int idProducto;
+    private String idProducto;
     private String nombre;
 
     private ArrayList<Lista> lstLista;
@@ -18,13 +18,16 @@ public class Producto implements Serializable {
     /**
      * CONSTRUCTORS ->
      */
-    public Producto(int idProducto, String nombre) {
-        // ESTE ES PARA PRUEB
+
+    public Producto() {
+    }
+
+    public Producto(String idProducto, String nombre) {
         this.idProducto = idProducto;
         this.nombre = nombre;
     }
 
-    public Producto(int idProducto, String nombre, int estado, String log_fecha_creado, String log_fecha_moficado) {
+    public Producto(String idProducto, String nombre, int estado, String log_fecha_creado, String log_fecha_moficado) {
         this.idProducto = idProducto;
         this.nombre = nombre;
         this.estado = estado;
@@ -32,14 +35,16 @@ public class Producto implements Serializable {
         this.log_fecha_moficado = log_fecha_moficado;
     }
 
+
     /**
      * GETTERS & SETTERS ->
      */
-    public int getIdProducto() {
+
+    public String getIdProducto() {
         return idProducto;
     }
 
-    public void setIdProducto(int idProducto) {
+    public void setIdProducto(String idProducto) {
         this.idProducto = idProducto;
     }
 

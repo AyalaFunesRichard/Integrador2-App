@@ -4,53 +4,47 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.CompoundButton;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.vistas.DTOs.Lista;
-import com.example.vistas.DTOs.Producto;
-import com.example.vistas.Interfaces.Inter__RVA__Item_CheckBox;
 import com.example.vistas.R;
 
 import java.util.ArrayList;
 import java.util.EventListener;
 
-public class RVA__Text extends RecyclerView.Adapter<RVA__Text.MyHolder> implements EventListener {
+public class RVA__Economy_TwoText extends RecyclerView.Adapter<RVA__Economy_TwoText.MyHolder> implements EventListener {
 
     Context context;
 
-    ArrayList<Lista> listas = null;
+    ArrayList<Lista> lstListas = null;
 
-    private Inter__RVA__Item_CheckBox rvFrgCheckBox;
-
-    public RVA__Text(Context context, ArrayList<Lista> lista) {
+    public RVA__Economy_TwoText(Context context, ArrayList<Lista> lstListas) {
         this.context = context;
-        this.listas = lista;
+        this.lstListas = lstListas;
     }
 
     @NonNull
     @Override
     public MyHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
-        View v = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.rv_item_checkbox, viewGroup, false);
+        View v = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.rv_economy_two_text, viewGroup, false);
         return new MyHolder(v);
     }
 
     @Override
     public void onBindViewHolder(@NonNull MyHolder myHolder, int i) {
 
-        Lista lista = listas.get(i);
+        Lista lista = lstListas.get(i);
 
         myHolder.lblNombre.setText(lista.getNombre() + ":");
         myHolder.lblCosto.setText("S/ " + lista.getGasto());
-
     }
 
     @Override
     public int getItemCount() {
-        return listas.size();
+        return lstListas.size();
     }
 
     //

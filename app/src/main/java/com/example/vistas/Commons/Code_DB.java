@@ -1,4 +1,4 @@
-package com.example.vistas.Definitions;
+package com.example.vistas.Commons;
 
 public interface Code_DB {
 
@@ -9,7 +9,7 @@ public interface Code_DB {
     String TABLE_PRODUCTO = "Producto";
     String TABLE_USUARIO = "Usuario";
     String TABLE_LISTA = "Lista";
-    String TABLE_MONTO = "Presupuesto";
+    String TABLE_PRESUPUESTO = "Presupuesto";
     String TABLE_CATEGORIA = "Categoria";
     // Tables many-to-many
     String TABLE_PRODUCTO_LISTA = "Producto_Lista";
@@ -25,6 +25,5 @@ public interface Code_DB {
     String DATE_FORMART = "YYYY-MM-DD HH:MM:SS";
 
     // Result and Error codes
-//    int SQLITE_OK = 0;
     int SQLITE_ERROR = -1;
 }

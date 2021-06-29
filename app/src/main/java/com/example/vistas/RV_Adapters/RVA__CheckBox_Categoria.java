@@ -54,7 +54,7 @@ public class RVA__CheckBox_Categoria extends RecyclerView.Adapter<RVA__CheckBox_
         boolean chBxStatus = false;
 
         for (int j = 0; j < productoAux.getLstCategoria().size(); j++) {
-            if (categoria.getIdCategoria() == productoAux.getLstCategoria().get(j).getIdCategoria()) {
+            if (categoria.getIdCategoria().equals(productoAux.getLstCategoria().get(j).getIdCategoria())) {
                 chBxStatus = true;
                 break;
             }

@@ -12,7 +12,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.vistas.DTOs.Lista;
 import com.example.vistas.DTOs.Producto;
-import com.example.vistas.Definitions.Codes;
+import com.example.vistas.Commons.Codes;
 import com.example.vistas.R;
 
 import java.util.ArrayList;

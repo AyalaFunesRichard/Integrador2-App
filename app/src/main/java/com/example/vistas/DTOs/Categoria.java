@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public class Categoria {
 
-    private int idCategoria;
+    private String idCategoria;
     private String nombre;
     private ArrayList<Producto> lstProductos;
 
@@ -12,18 +12,20 @@ public class Categoria {
     private String log_fecha_creado;
     private String log_fecha_modificado;
 
+
     /**
      * CONSTRUCTORS ->
      */
-//    public Categoria() {
-//    }
 
-    public Categoria(int idCategoria, String nombre) {
+    public Categoria() {
+    }
+
+    public Categoria(String idCategoria, String nombre) {
         this.idCategoria = idCategoria;
         this.nombre = nombre;
     }
 
-    public Categoria(int idCategoria, String nombre, ArrayList<Producto> lstProductos, int estado, String log_fecha_creado, String log_fecha_modificado) {
+    public Categoria(String idCategoria, String nombre, ArrayList<Producto> lstProductos, int estado, String log_fecha_creado, String log_fecha_modificado) {
         this.idCategoria = idCategoria;
         this.nombre = nombre;
         this.lstProductos = lstProductos;
@@ -32,16 +34,18 @@ public class Categoria {
         this.log_fecha_modificado = log_fecha_modificado;
     }
 
-    /**
-     * GETTERS & SETTERS ->
-     */
-    public int getIdCategoria() {
+    public String getIdCategoria() {
         return idCategoria;
     }
 
-    public void setIdCategoria(int idCategoria) {
+    public void setIdCategoria(String idCategoria) {
         this.idCategoria = idCategoria;
     }
+
+    /**
+     * GETTERS & SETTERS ->
+     */
+
 
     public String getNombre() {
         return nombre;

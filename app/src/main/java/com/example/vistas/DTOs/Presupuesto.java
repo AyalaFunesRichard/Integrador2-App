@@ -2,28 +2,30 @@ package com.example.vistas.DTOs;
 
 public class Presupuesto {
 
-    private int idMonto;
+//    idPresupuesto TEXT, fecha TEXT, monto INTEGER, estado INT, log_fecha_creado TEXT, log_fecha_modificado TEXT
+
+    private String idPresupuesto;
     private String fecha;
-    private double monto;
+    private double presupuesto;
 
     private int estado;
     private String log_fecha_creado;
     private String log_fecha_modificado;
 
-    /**
-     * CONSTRUCTORS ->
-     */
-    public Presupuesto(int idMonto, String fecha, double monto, int estado) {
-        this.idMonto = idMonto;
+    public Presupuesto() {
+    }
+
+    public Presupuesto(String idPresupuesto, String fecha, double presupuesto, int estado) {
+        this.idPresupuesto = idPresupuesto;
         this.fecha = fecha;
-        this.monto = monto;
+        this.presupuesto = presupuesto;
         this.estado = estado;
     }
 
-    public Presupuesto(int idMonto, String fecha, double monto, int estado, String log_fecha_creado, String log_fecha_modificado) {
-        this.idMonto = idMonto;
+    public Presupuesto(String idPresupuesto, String fecha, double presupuesto, int estado, String log_fecha_creado, String log_fecha_modificado) {
+        this.idPresupuesto = idPresupuesto;
         this.fecha = fecha;
-        this.monto = monto;
+        this.presupuesto = presupuesto;
         this.estado = estado;
         this.log_fecha_creado = log_fecha_creado;
         this.log_fecha_modificado = log_fecha_modificado;
@@ -32,12 +34,12 @@ public class Presupuesto {
     /**
      * GETTERS & SETTERS ->
      */
-    public int getIdMonto() {
-        return idMonto;
+    public String getIdPresupuesto() {
+        return idPresupuesto;
     }
 
-    public void setIdMonto(int idMonto) {
-        this.idMonto = idMonto;
+    public void setIdPresupuesto(String idPresupuesto) {
+        this.idPresupuesto = idPresupuesto;
     }
 
     public String getFecha() {
@@ -48,12 +50,12 @@ public class Presupuesto {
         this.fecha = fecha;
     }
 
-    public double getMonto() {
-        return monto;
+    public double getPresupuesto() {
+        return presupuesto;
     }
 
-    public void setMonto(double monto) {
-        this.monto = monto;
+    public void setPresupuesto(double presupuesto) {
+        this.presupuesto = presupuesto;
     }
 
     public int getEstado() {

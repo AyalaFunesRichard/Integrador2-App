@@ -43,12 +43,11 @@
     <TextView
         android:id="@+id/lbl_frgEconomy_Monto"
         style="@style/Text_Normal"
-        android:layout_width="66dp"
+        android:layout_width="wrap_content"
         android:layout_height="22dp"
         android:layout_marginStart="20dp"
-        android:layout_marginLeft="20dp"
         android:layout_marginTop="36dp"
-        android:text="S/. 1200"
+        android:text="null"
         android:textColor="#000000"
         app:layout_constraintStart_toEndOf="@+id/textView14"
         app:layout_constraintTop_toBottomOf="@+id/lbl_frgEconomy_Mes" />
@@ -86,9 +85,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="36dp"
-        android:layout_marginRight="36dp"
         android:layout_marginBottom="48dp"
-        android:text="750"
+        android:text="null"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 

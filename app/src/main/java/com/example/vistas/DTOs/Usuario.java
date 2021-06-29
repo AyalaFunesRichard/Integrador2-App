@@ -1,8 +1,10 @@
 package com.example.vistas.DTOs;
 
-public class Usuario {
+import java.io.Serializable;
 
-    private int idUsario;
+public class Usuario implements Serializable {
+
+    private String idUsario;
     private String correo;
     private String nombreFamiliar;
 
@@ -17,14 +19,24 @@ public class Usuario {
     public Usuario() {
     }
 
+    public Usuario(String idUsario, String correo, String nombreFamiliar, int estado, String log_fecha_creado, String log_fecha_modificado, String log_fecha_ultimaSesion) {
+        this.idUsario = idUsario;
+        this.correo = correo;
+        this.nombreFamiliar = nombreFamiliar;
+        this.estado = estado;
+        this.log_fecha_creado = log_fecha_creado;
+        this.log_fecha_modificado = log_fecha_modificado;
+        this.log_fecha_ultimaSesion = log_fecha_ultimaSesion;
+    }
+
     /**
      * GETTERS & SETTERS ->
      */
-    public int getIdUsario() {
+    public String getIdUsario() {
         return idUsario;
     }
 
-    public void setIdUsario(int idUsario) {
+    public void setIdUsario(String idUsario) {
         this.idUsario = idUsario;
     }
 

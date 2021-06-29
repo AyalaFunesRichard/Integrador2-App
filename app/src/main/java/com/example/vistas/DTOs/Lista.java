@@ -4,7 +4,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 
 public class Lista implements Serializable {
-    private int idLista;
+    private String idLista;
     private String nombre;
     private double gasto;
     private String fechaComprado;
@@ -21,7 +21,7 @@ public class Lista implements Serializable {
     public Lista() {
     }
 
-    public Lista(int idLista, String nombre) {
+    public Lista(String idLista, String nombre) {
         this.idLista = idLista;
         this.nombre = nombre;
     }
@@ -32,7 +32,7 @@ public class Lista implements Serializable {
         this.fechaComprado = fechaComprado;
     }
 
-    public Lista(int idLista, String nombre, double gasto, String fechaComprado, int estado, String log_fecha_creado, String log_fecha_modificado) {
+    public Lista(String idLista, String nombre, double gasto, String fechaComprado, int estado, String log_fecha_creado, String log_fecha_modificado) {
         this.idLista = idLista;
         this.nombre = nombre;
         this.gasto = gasto;
@@ -52,11 +52,12 @@ public class Lista implements Serializable {
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
-    public int getIdLista() {
+
+    public String getIdLista() {
         return idLista;
     }
 
-    public void setIdLista(int idLista) {
+    public void setIdLista(String idLista) {
         this.idLista = idLista;
     }
 

@@ -45,16 +45,6 @@ public class RVA__CheckBox_Producto extends RecyclerView.Adapter<RVA__CheckBox_P
         final Producto producto = lstProducto.get(i);
 
         myHolder.lblItem.setText(producto.getNombre());
-//        myHolder.lblItem.setText(categoria.getNombre());
-//
-//        boolean chBxStatus = false;
-//
-//        for (int j = 0; j < productoAux.getLstCategoria().size(); j++) {
-//            if (categoria.getIdCategoria() == productoAux.getLstCategoria().get(j).getIdCategoria()) {
-//                chBxStatus = true;
-//                break;
-//            }
-//        }
 
         myHolder.checkBox.setOnCheckedChangeListener(null);
         myHolder.checkBox.setChecked(true);

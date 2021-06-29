@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "1035916603547",
+    "project_id": "intgrdr2-mefalta",
+    "storage_bucket": "intgrdr2-mefalta.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1035916603547:android:d3913ead2911061b35d63e",
+        "android_client_info": {
+          "package_name": "com.example.vistas"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1035916603547-3dnf8mu1vhkdigkdeqm030b7f13arcgc.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.vistas",
+            "certificate_hash": "b83b691cfa5a4a3139a50f252306e0a65cd425f6"
+          }
+        },
+        {
+          "client_id": "1035916603547-ku7bsle33d58koaot286653m5f4a93er.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyClogKC1XNreJR5-PjSUtCItUsXqY6ktQE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1035916603547-ku7bsle33d58koaot286653m5f4a93er.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -1,4 +1,4 @@
-package com.example.vistas.Definitions;
+package com.example.vistas.Commons;
 
 public interface Code_Error {
 

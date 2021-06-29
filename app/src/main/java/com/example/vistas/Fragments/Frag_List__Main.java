@@ -14,7 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.vistas.DAOs.ListaDAO;
 import com.example.vistas.DTOs.Lista;
 import com.example.vistas.DTOs.Producto;
-import com.example.vistas.Definitions.Codes;
+import com.example.vistas.Commons.Codes;
 import com.example.vistas.R;
 import com.example.vistas.RV_Adapters.RVA__ItemOption;
 

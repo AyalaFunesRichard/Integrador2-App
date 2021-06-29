@@ -22,9 +22,10 @@ import com.example.vistas.DAOs.ProductoDAO;
 import com.example.vistas.DAOs.Rela_ProductoCategoriaDAO;
 import com.example.vistas.DTOs.Categoria;
 import com.example.vistas.DTOs.Producto;
-import com.example.vistas.Definitions.Code_Error;
-import com.example.vistas.Definitions.Codes;
-import com.example.vistas.Definitions.Code_DB;
+import com.example.vistas.Commons.Code_Error;
+import com.example.vistas.Commons.Codes;
+import com.example.vistas.Commons.Code_DB;
+import com.example.vistas.DTOs.Rela_ProductoCategoria;
 import com.example.vistas.Interfaces.Inter__RVA__Item_CheckBox;
 import com.example.vistas.R;
 import com.example.vistas.RV_Adapters.RVA__CheckBox_Categoria;
@@ -32,6 +33,7 @@ import com.example.vistas.RV_Adapters.RVA__CheckBox_Categoria;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.Objects;
 
 public class Frag_Product__AlterProduct extends Fragment implements Code_Error, Inter__RVA__Item_CheckBox<Categoria> {
 
@@ -48,7 +50,7 @@ public class Frag_Product__AlterProduct extends Fragment implements Code_Error, 
 
     private String fragmentFor = null; // recognize this fragment
 
-    private Producto producto = new Producto(-1, "ERROR");
+    private Producto producto = new Producto("-1", "ERROR");
 
     public Frag_Product__AlterProduct() {
         // Required empty public constructor
@@ -57,8 +59,6 @@ public class Frag_Product__AlterProduct extends Fragment implements Code_Error, 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-
     }
 
     @Override
@@ -108,7 +108,7 @@ public class Frag_Product__AlterProduct extends Fragment implements Code_Error, 
                     String fechaCreado = new SimpleDateFormat(Code_DB.DATE_FORMART).format(new Date());
                     String fechaEditado = "";
 
-                    Producto newProducto = new Producto(-1, nombre, estado, fechaCreado, fechaEditado);
+                    Producto newProducto = new Producto("-1", nombre, estado, fechaCreado, fechaEditado);
                     DB_insert_Producto(newProducto);
 
                     newProducto = new ProductoDAO(getContext()).select_where_nombre(newProducto.getNombre());
@@ -167,7 +167,7 @@ public class Frag_Product__AlterProduct extends Fragment implements Code_Error, 
 
                         if (isCategoriaModified ) {
 
-                            int idProducto = producto.getIdProducto();
+                            String idProducto = producto.getIdProducto();
                             DB_delete_RelaProdCate(idProducto);
 
                             for (int i = 0; i < producto.getLstCategoria().size(); i++) {
@@ -192,17 +192,6 @@ public class Frag_Product__AlterProduct extends Fragment implements Code_Error, 
             }
         }
     };
-    /*
-     * DETECTAR TIPO DE FRAGMENT
-     *   SETTEAR EL TITULO-------
-     *   SETTEAR TEXT_EDIT
-     *   SETTER LOS BOTONES
-     *   SETTEAR EIQUETAS
-     *       SI editar
-     *            VERIFICAR SI EL PRODUCTO CAMBIO
-     *            RECIBIR PRODUCTO
-     *            RECIBIR ETIQUETAS SELECCIONADAS
-     * */
 
     private void detectThisFragment() {
         fragmentFor = getArguments().getString(Codes.ARG_NEXT_FRAGMENT_IS_FOR);
@@ -294,6 +283,7 @@ public class Frag_Product__AlterProduct extends Fragment implements Code_Error, 
     }
 
     // * /
+
     private boolean isItemEdited() {
         String nombre;
 
@@ -337,11 +327,11 @@ public class Frag_Product__AlterProduct extends Fragment implements Code_Error, 
                 // Same size, but different content ->
                 boolean sameId;
                 for (int i = 0; i < sizeOld; i++) {
-                    int idStart = lstCategoriaOld.get(i).getIdCategoria();
+                    String idStart = lstCategoriaOld.get(i).getIdCategoria();
 
                     sameId = false;
                     for (int j = 0; j < sizeNew; j++) {
-                        if (idStart == producto.getLstCategoria().get(j).getIdCategoria()) {
+                        if (Objects.equals(idStart, producto.getLstCategoria().get(j).getIdCategoria())) {
                             sameId = true;
                             break;
                         }
@@ -438,7 +428,7 @@ public class Frag_Product__AlterProduct extends Fragment implements Code_Error, 
     }
 
     private void DB_insert_Producto(Producto newProducto) {
-        int code = new ProductoDAO(getContext()).insert(newProducto);
+        int code = new ProductoDAO(getContext()).insert(newProducto,false);
 
         String message;
         if (code == Code_DB.SQLITE_ERROR) {
@@ -449,9 +439,10 @@ public class Frag_Product__AlterProduct extends Fragment implements Code_Error, 
         Toast.makeText(getContext(), message, Toast.LENGTH_SHORT).show();
     }
 
-    private boolean DB_insert_RelaProductoCategoria(int idProducto, int idCategoria) {
+    private boolean DB_insert_RelaProductoCategoria(String idProducto, String idCategoria) {
         boolean ok = true;
-        int code = new Rela_ProductoCategoriaDAO(getContext()).insert(idProducto, idCategoria);
+        Rela_ProductoCategoria rela = new Rela_ProductoCategoria(idProducto, idCategoria);
+        int code = new Rela_ProductoCategoriaDAO(getContext()).insert(rela, false);
 
         if (code == Code_DB.SQLITE_ERROR) {
             String message = getString(R.string.relaClass_insert_fail);
@@ -462,9 +453,9 @@ public class Frag_Product__AlterProduct extends Fragment implements Code_Error, 
         return ok;
     }
 
-    private boolean DB_delete_RelaProdCate(int idProducto) {
+    private boolean DB_delete_RelaProdCate(String idProducto) {
         boolean ok = true;
-        int code = new Rela_ProductoCategoriaDAO(getContext()).delete_where_idProducto(idProducto);
+        int code = new Rela_ProductoCategoriaDAO(getContext()).deleteAll_where_idProducto(idProducto);
 
         if (code == Code_DB.SQLITE_ERROR) {
             String message = getString(R.string.relaClass_delete_fail);

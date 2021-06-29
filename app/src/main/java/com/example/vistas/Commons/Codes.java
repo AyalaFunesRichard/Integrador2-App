@@ -1,4 +1,4 @@
-package com.example.vistas.Definitions;
+package com.example.vistas.Commons;
 
 public class Codes {
 
@@ -68,7 +68,8 @@ public class Codes {
     /***/
     public static final String ARG_PRODUCT_CLASS = "product";
     public static final String ARG_NEXT_FRAGMENT_IS_FOR = "fragmentFor";
-
+    public static final String ARG_LISTA_CLASS = "lista";
+    public static final String ARG_FIREBASE_IDUSUARIO = "DataSnapshot_idUsuario";
 
     /**************
      * ALERT DIALOGs -> ->

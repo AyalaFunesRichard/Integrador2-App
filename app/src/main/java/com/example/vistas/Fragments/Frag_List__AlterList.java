@@ -16,6 +16,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.SearchView;
 import android.widget.Toast;
 
 import com.example.vistas.DAOs.ListaDAO;
@@ -23,27 +24,39 @@ import com.example.vistas.DAOs.ProductoDAO;
 import com.example.vistas.DAOs.Rela_ListaProductoDAO;
 import com.example.vistas.DTOs.Lista;
 import com.example.vistas.DTOs.Producto;
-import com.example.vistas.Definitions.Code_DB;
-import com.example.vistas.Definitions.Code_Error;
-import com.example.vistas.Definitions.Codes;
+import com.example.vistas.Commons.Code_DB;
+import com.example.vistas.Commons.Code_Error;
+import com.example.vistas.Commons.Codes;
+import com.example.vistas.DTOs.Rela_ProductoLista;
+import com.example.vistas.Interfaces.Inter_OnBackPressed;
 import com.example.vistas.Interfaces.Inter__RVA__Item_CheckBox;
+import com.example.vistas.Interfaces.Inter__RVA__One_Item;
 import com.example.vistas.R;
 import com.example.vistas.RV_Adapters.RVA__CheckBox_Producto;
+import com.example.vistas.RV_Adapters.RVA__OneItem;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
+import java.util.stream.Collectors;
 
-public class Frag_List__AlterList extends Fragment implements Code_Error, Inter__RVA__Item_CheckBox<Producto> {
+public class Frag_List__AlterList extends Fragment implements Code_Error, Inter__RVA__Item_CheckBox<Producto>,
+        Inter__RVA__One_Item, SearchView.OnQueryTextListener,
+        SearchView.OnCloseListener, View.OnFocusChangeListener,
+        Inter_OnBackPressed {
 
     private String fragmentFor = null; // recognize this fragment
 
-    RecyclerView recyclerView;
+    RecyclerView rvProductos_selected;
+    RecyclerView rvProductos_searched;
     RVA__CheckBox_Producto rva_checkbox;
+    RVA__OneItem rva_oneItem;
 
-    private EditText txtNombre, txtProducto;
+    private EditText txtNombre;
     private Button btnCancel, btnConfirm;
     private ImageButton iBtnCancelEdit, iBtnConfirmEdit, iBtnDelete, iBtnListReady;
+    private SearchView txtSearch;
 
     Lista lista = null;
 
@@ -51,13 +64,11 @@ public class Frag_List__AlterList extends Fragment implements Code_Error, Inter_
     private ArrayList<Producto> lstProductoOld;
     private String nombreOld;  // <-Compare when return
 
+    // For searching ->
+    ArrayList<Producto> lstAllProducto;
+
     public Frag_List__AlterList() {
         // Required empty public constructor
-    }
-
-    public static Frag_List__AlterList newInstance(String param1, String param2) {
-        Frag_List__AlterList fragment = new Frag_List__AlterList();
-        return fragment;
     }
 
     @Override
@@ -71,11 +82,18 @@ public class Frag_List__AlterList extends Fragment implements Code_Error, Inter_
         View view = inflater.inflate(R.layout.fragment_list__alter_list, container, false);
 
         txtNombre = view.findViewById(R.id.eTxt_FragListAlter_name);
-        txtProducto = view.findViewById(R.id.eText_FragAlterList_findProduct);
 
-        recyclerView = view.findViewById(R.id.rv_FragAlterList);
+        rvProductos_selected = view.findViewById(R.id.rv_FragAlterList);
+        rvProductos_searched = view.findViewById(R.id.rv_searchResult);
+
+        txtSearch = view.findViewById(R.id.srchVw_FragAlterList_findProduct);
+        txtSearch.setOnQueryTextListener(this);
+        txtSearch.setOnQueryTextFocusChangeListener(this);
+        txtSearch.setOnCloseListener(this);
+        DB_update_searchProductList();
 
         lista = new Lista();
+        lista.setLstProductos(new ArrayList<>());
 
         //
         detectThisFragment();
@@ -115,16 +133,18 @@ public class Frag_List__AlterList extends Fragment implements Code_Error, Inter_
                     String fechaCreado = new SimpleDateFormat(Code_DB.DATE_FORMART).format(new Date());
                     String fechaEditado = "";
 
-                    Lista newLista = new Lista(-1, nombre, gasto, fechaComprado, estado, fechaCreado, fechaEditado);
+                    Lista newLista = new Lista("-1", nombre, gasto, fechaComprado, estado, fechaCreado, fechaEditado);
                     DB_insert_Lista(newLista);
+                    // <- Register the Lista (no, Producto)
 
+                    // Recover new Lista
                     newLista = new ListaDAO(getContext()).select_where_nombre(newLista.getNombre());
 
                     boolean productoOk;
-                    if(lista.getLstProductos() != null){
+                    if (lista.getLstProductos() != null) {
                         for (int i = 0; i < lista.getLstProductos().size(); i++) {
 
-                            productoOk = DB_insert_RelaListaProducto(lista.getLstProductos().get(i).getIdProducto());
+                            productoOk = DB_insert_RelaListaProducto(lista.getLstProductos().get(i).getIdProducto(), newLista.getIdLista());
 
                             if (!productoOk) return;
                         }
@@ -173,16 +193,16 @@ public class Frag_List__AlterList extends Fragment implements Code_Error, Inter_
                         }
 
                         if (isProductoModified) {
-//                            int idLista = lista.getIdLista();
+//                            String idLista = lista.getIdLista();
                             int lstNewSize = lista.getLstProductos().size(), lstOldSize = lstProductoOld.size();
-                            int idOld, idNew;
+                            String idOld, idNew;
                             boolean done;
                             // * DELETE the old ones
                             for (int i = 0; i < lstOldSize; i++) {
                                 idOld = lstProductoOld.get(i).getIdProducto();
 
                                 done = false;
-                                idNew = -1;
+                                idNew = "-1";
                                 for (int j = 0; j < lstNewSize; j++) {
                                     idNew = lista.getLstProductos().get(j).getIdProducto();
 
@@ -192,9 +212,9 @@ public class Frag_List__AlterList extends Fragment implements Code_Error, Inter_
                                     }
                                 }
 
-                                if(!done){
+                                if (!done) {
                                     boolean rspt = DB_delete_RelaListProducto(idOld);
-                                    if(!rspt){ // this is in case "DB_delete_RelaListProducto(idOld);" goes wrong
+                                    if (!rspt) { // this is in case "DB_delete_RelaListProducto(idOld);" goes wrong
                                         categoriaOk = false;
                                         break;
                                     }
@@ -206,7 +226,7 @@ public class Frag_List__AlterList extends Fragment implements Code_Error, Inter_
                                 idNew = lista.getLstProductos().get(i).getIdProducto();
 
                                 done = false;
-                                idOld = -1;
+                                idOld = "-1";
                                 for (int j = 0; j < lstOldSize; j++) {
                                     idOld = lstProductoOld.get(j).getIdProducto();
 
@@ -216,9 +236,9 @@ public class Frag_List__AlterList extends Fragment implements Code_Error, Inter_
                                     }
                                 }
 
-                                if(!done){
-                                    boolean rspt = DB_insert_RelaListaProducto(idNew);
-                                    if(!rspt){ // this is in case "DB_delete_RelaListProducto(idOld);" goes wrong
+                                if (!done) {
+                                    boolean rspt = DB_insert_RelaListaProducto(idNew, lista.getIdLista());
+                                    if (!rspt) { // this is in case "DB_delete_RelaListProducto(idOld);" goes wrong
                                         categoriaOk = false;
                                         break;
                                     }
@@ -233,11 +253,23 @@ public class Frag_List__AlterList extends Fragment implements Code_Error, Inter_
                     returnFrame();
                     break;
                 case R.id.iBtn_FragAlterList__edit_ready:
-                    // TODO
-                    // TODO: implementar gestion de economia
-                    // TODO
+
+                    // Validate if there are Productos checked
+                    if(lista.getLstProductos().isEmpty()) {
+                        String msg = lista.getNombre() + " debe de tener por lo menos, un producto asociado.";
+                        Toast.makeText(getContext(), msg, Toast.LENGTH_SHORT).show();
+                        return;
+                    }
+
+                    Frag_List__Process nextFragment = new Frag_List__Process();
+
+                    Bundle bundle = new Bundle();
+
+                    bundle.putSerializable(Codes.ARG_LISTA_CLASS, lista);
+                    nextFragment.setArguments(bundle);
+
                     FragmentTransaction transaction = getFragmentManager().beginTransaction();
-                    transaction.replace(R.id.main_fragment_container, new Frag_List__Process()).addToBackStack("tag").commit();
+                    transaction.replace(R.id.main_fragment_container, nextFragment).addToBackStack("tag").commit();
                     break;
 
                 default:
@@ -321,19 +353,23 @@ public class Frag_List__AlterList extends Fragment implements Code_Error, Inter_
 
         ProductoDAO productoDAO = new ProductoDAO(getContext());
 
-        lista.setLstProductos(productoDAO.select_where_idLista(lista.getIdLista()));
-        lstProductoOld = productoDAO.select_where_idLista(lista.getIdLista());
+        lista.setLstProductos(productoDAO.select_where_idLista_estadoLista(lista.getIdLista()));
+        lstProductoOld = productoDAO.select_where_idLista_estadoLista(lista.getIdLista());
 
-        rva_checkbox = new RVA__CheckBox_Producto(getContext(), lista.getLstProductos(), this);
-
-        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-        recyclerView.setAdapter(rva_checkbox);
+        update_ProductListed(lista.getLstProductos());
     }
 
     private void setUp_EditText(View v) {
         EditText etAux = v.findViewById(R.id.eTxt_FragListAlter_name);
         etAux.setText(lista.getNombre());
         nombreOld = etAux.getText().toString();
+    }
+
+    private void update_ProductListed(ArrayList<Producto> lstProductoListed) {
+        rva_checkbox = new RVA__CheckBox_Producto(getContext(), lstProductoListed, this);
+
+        rvProductos_selected.setLayoutManager(new LinearLayoutManager(getContext()));
+        rvProductos_selected.setAdapter(rva_checkbox);
     }
 
     // * /
@@ -383,7 +419,7 @@ public class Frag_List__AlterList extends Fragment implements Code_Error, Inter_
         getFragmentManager().popBackStack();
     }
 
-    // * /
+    // * Validation to change view ->  /
     private boolean isListaEdited() {
         String nombre;
 
@@ -427,11 +463,11 @@ public class Frag_List__AlterList extends Fragment implements Code_Error, Inter_
                 // Same size, but different content ->
                 boolean sameId;
                 for (int i = 0; i < sizeOld; i++) {
-                    int idStart = lstProductoOld.get(i).getIdProducto();
+                    String idStart = lstProductoOld.get(i).getIdProducto();
 
                     sameId = false;
                     for (int j = 0; j < sizeNew; j++) {
-                        if (idStart == lista.getLstProductos().get(j).getIdProducto()) {
+                        if (idStart.equals(lista.getLstProductos().get(j).getIdProducto())) {
                             sameId = true;
                             break;
                         }
@@ -449,9 +485,40 @@ public class Frag_List__AlterList extends Fragment implements Code_Error, Inter_
         return productosEdited;
     }
 
+    // * Search producto ->  /
+    private void searchProducto(String searchString) {
 
-    /* * - - - -
-     * DataBase Communication */
+        if (searchString.isEmpty()) {
+            update_searchViewAdapter(new ArrayList<Producto>());
+            return;
+        }
+
+        update_searchViewAdapter(filter(lstAllProducto, searchString));
+    }
+
+    private ArrayList<Producto> filter(ArrayList<Producto> lstSearched, final String searchString) {
+
+        ArrayList<Producto> lstRspt = new ArrayList<>();
+
+        List<Producto> auxLst = lstSearched.stream()
+                .filter(i -> i.getNombre().toLowerCase().contains(searchString.toLowerCase()))
+                .collect(Collectors.toList());
+
+        lstRspt.clear();
+        lstRspt.addAll(auxLst);
+
+        return lstRspt;
+    }
+
+    private void update_searchViewAdapter(ArrayList<Producto> lstProductoReady) {
+
+        rva_oneItem = new RVA__OneItem(getContext(), lstProductoReady, this);
+
+        rvProductos_searched.setLayoutManager(new LinearLayoutManager(getContext()));
+        rvProductos_searched.setAdapter(rva_oneItem);
+    }
+
+    // * DataBase Communication */
     private boolean DB_update_Lista(boolean showToast) {
         boolean rspt = true;
         int code = new ListaDAO(getContext()).update_where_idLista(lista);
@@ -470,7 +537,7 @@ public class Frag_List__AlterList extends Fragment implements Code_Error, Inter_
     }
 
     private void DB_insert_Lista(Lista newLista) {
-        int code = new ListaDAO(getContext()).insert(newLista);
+        int code = new ListaDAO(getContext()).insert(newLista, false);
 
         String message;
         if (code == Code_DB.SQLITE_ERROR) {
@@ -481,9 +548,10 @@ public class Frag_List__AlterList extends Fragment implements Code_Error, Inter_
         Toast.makeText(getContext(), message, Toast.LENGTH_SHORT).show();
     }
 
-    private boolean DB_insert_RelaListaProducto(int idProducto) {
+    private boolean DB_insert_RelaListaProducto(String idProducto, String idLista) {
         boolean ok = true;
-        int code = new Rela_ListaProductoDAO(getContext()).insert(idProducto, lista.getIdLista());
+        Rela_ProductoLista rela = new Rela_ProductoLista(idProducto, idLista);
+        int code = new Rela_ListaProductoDAO(getContext()).insert(rela, false);
 
         if (code == Code_DB.SQLITE_ERROR) {
             Toast.makeText(getContext(), getString(R.string.relaClass_insert_fail), Toast.LENGTH_SHORT).show();
@@ -505,7 +573,7 @@ public class Frag_List__AlterList extends Fragment implements Code_Error, Inter_
         Toast.makeText(getContext(), message, Toast.LENGTH_SHORT).show();
     }
 
-    private boolean DB_delete_RelaListProducto(int idProducto) {
+    private boolean DB_delete_RelaListProducto(String idProducto) {
         boolean ok = true;
         int code = new Rela_ListaProductoDAO(getContext()).delete_where_idP_idL(idProducto, lista.getIdLista());
 
@@ -515,6 +583,14 @@ public class Frag_List__AlterList extends Fragment implements Code_Error, Inter_
         }
 
         return ok;
+    }
+
+    private void DB_update_searchProductList() {
+        lstAllProducto = DB_select_Producto();
+    }
+
+    private ArrayList<Producto> DB_select_Producto() {
+        return new ProductoDAO(getContext()).select_all();
     }
 
     // * Validation
@@ -536,7 +612,8 @@ public class Frag_List__AlterList extends Fragment implements Code_Error, Inter_
         }
 
         // Just for edting
-        if (fragmentFor.equals(Codes.FRAGMENT_FOR_EDIT) && rspt.equals(lista.getNombre())) return rspt;
+        if (fragmentFor.equals(Codes.FRAGMENT_FOR_EDIT) && rspt.equals(lista.getNombre()))
+            return rspt;
 
         // for Edting and Creating
         Lista categoriaAux = new ListaDAO(getContext()).select_where_nombre(rspt);
@@ -549,7 +626,7 @@ public class Frag_List__AlterList extends Fragment implements Code_Error, Inter_
         return rspt;
     }
 
-    // * INTERFACE ->
+    // * INTERFACE -> Inter__RVA__Item_CheckBox<Producto> ->
     @Override
     public void set_UpdateList(Producto producto, boolean isChecked) {
         ArrayList<Producto> lstAux = lista.getLstProductos();
@@ -565,5 +642,57 @@ public class Frag_List__AlterList extends Fragment implements Code_Error, Inter_
             }
         }
         lista.setLstProductos(lstAux);
+    }
+
+    // * INTERFACE -> Inter__RVA__One_Item ->
+    @Override
+    public void productSelected(Producto productoSelected) {
+        set_UpdateList(productoSelected, true);
+
+        update_ProductListed(lista.getLstProductos());
+
+        txtSearch.setIconified(true);
+    }
+
+    // * SearchView.OnQueryTextListener ->
+    @Override
+    public boolean onQueryTextSubmit(String s) {
+
+        searchProducto(s);
+
+        return false;
+    }
+
+    @Override
+    public boolean onQueryTextChange(String s) {
+
+        searchProducto(s);
+
+        return false;
+    }
+
+    @Override
+    public void onFocusChange(View view, boolean b) {
+
+        if (!b) {
+            update_searchViewAdapter(new ArrayList<>());
+        } else {
+            searchProducto(txtSearch.getQuery().toString());
+        }
+    }
+
+    @Override
+    public boolean onClose() {
+        txtSearch.clearFocus();
+        update_searchViewAdapter(new ArrayList<>());
+
+        return false;
+    }
+
+    // * Inter_OnBackPressed ->
+    @Override
+    public boolean onBackPressed() {
+//        popup_return();
+        return true;
     }
 }

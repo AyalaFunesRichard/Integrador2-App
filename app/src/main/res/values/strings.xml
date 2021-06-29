@@ -22,14 +22,17 @@
     <string name="dialog_title_exit">Salir</string>
     <string name="dialog_title_back">Regresar</string>
     <string name="dialog_title_delete">Eliminar</string>
+    <string name="dialog_title_inputCategoiriaName">Crear categoria</string>
 
     <string name="dialog_ques_exit">¿Cerrar de la aplicaión?</string>
     <string name="dialog_ques_back_missing_data">¿Regresar? Se perderá los datos llenados.</string>
     <string name="dialog_ques_deleting">Se eliminará:</string>
+    <string name="dialog_ques_inputCategoiriaName">Ingrese nombre de la categoria</string>
 
     <string name="dialog_ans_yes">Si</string>
     <string name="dialog_ans_continue">Continuar</string>
     <string name="dialog_ans_confirm">Confirmar</string>
+    <string name="dialog_ans_cancel">Cancelar</string>
     <string name="dialog_ans_no">No</string>
 
     <!--   * Producto-->
@@ -61,7 +64,24 @@
     <!--   * User's errors-->
     <string name="error_txtNombre_empty">Debe completar el campo nombre.</string>
     <string name="error_txtNombre_long">El nombre no debe de ser mayor a 48 caracteres.</string>
+    <string name="error_txtNombre_short">Correo debe ser mayor a 6 caracteres.</string>
     <string name="error_txtNombre_producto_repeated">Ya existe un producto con ese nombre.</string>
     <string name="error_txtNombre_lista_repeated">Ya existe una lista con ese nombre.</string>
     <string name="error_txtNombre_categoria_repeated">Ya existe una etiqueta con ese nombre.</string>
+    <!--    -->
+    <string name="error_txtCosto_empty">Debe completar el Costo.</string>
+    <string name="error_txtCosto_only_positive">Debe ingresar números positivos.</string>
+    <!--    -->
+    <string name="error_lstProducto_anySelected">Debe seleccionar algun producto.</string>
+    <!--    -->
+    <string name="error_txtCorreo_empty">Completar correo</string>
+    <string name="error_txtCorreo_long">Correo debe ser menor a 30 caracteres.</string>
+    <string name="error_txtCorreo_short">Correo debe ser mayor a 6 caracteres.</string>
+    <!--    -->
+    <string name="error_txtContra_empty">Completar contraseña</string>
+    <string name="error_txtContra_long">Contraseña debe ser menor a 30 caracteres.</string>
+    <string name="error_txtContra_short">Correo debe ser mayor a 6 caracteres.</string>
+    <!--    -->
+    <string name="dummy_button">Dummy Button</string>
+    <string name="dummy_content">DUMMY\nCONTENT</string>
 </resources>

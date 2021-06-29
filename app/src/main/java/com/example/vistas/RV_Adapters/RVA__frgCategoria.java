@@ -15,9 +15,9 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.vistas.DAOs.CategoriaDAO;
 import com.example.vistas.DTOs.Categoria;
-import com.example.vistas.Definitions.Code_DB;
-import com.example.vistas.Definitions.Code_Error;
-import com.example.vistas.Definitions.Codes;
+import com.example.vistas.Commons.Code_DB;
+import com.example.vistas.Commons.Code_Error;
+import com.example.vistas.Commons.Codes;
 import com.example.vistas.R;
 
 import java.text.SimpleDateFormat;
