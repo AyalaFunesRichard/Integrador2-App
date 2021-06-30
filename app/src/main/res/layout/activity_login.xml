@@ -57,6 +57,7 @@
             style="@style/ET_Common"
             android:layout_marginTop="32dp"
             android:hint="Contraseña"
+            android:password="true"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/etLogin_username" />

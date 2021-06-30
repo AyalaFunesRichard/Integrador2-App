@@ -112,12 +112,6 @@ public class Frag_List__AlterList extends Fragment implements Code_Error, Inter_
         return view;
     }
 
-    @Override
-    public void onStart() {
-        super.onStart();
-        new CommonMethods(getContext()).show_toast(getFragmentManager().getBackStackEntryCount() + " ON START");
-    }
-
     private final View.OnClickListener buttonListener = new View.OnClickListener() {
         public void onClick(View view) {
             String nombre;
