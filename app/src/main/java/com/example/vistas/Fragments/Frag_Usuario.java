@@ -82,8 +82,8 @@ public class Frag_Usuario extends Fragment implements View.OnClickListener {
         btnLogOut = view.findViewById(R.id.btnLogOut);
         btnLogOut.setOnClickListener(this);
 
-        lblName = view.findViewById(R.id.lblEmail);
-        lblEmail = view.findViewById(R.id.lblNombreFamilia);
+        lblName = view.findViewById(R.id.lblNombreFamilia);
+        lblEmail = view.findViewById(R.id.lblEmail);
 
         cm = new CommonMethods(getContext());
     }

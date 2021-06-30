@@ -4,12 +4,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#FAFAFA"
     tools:context=".Fragments.Frag_List__AlterList">
 
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:background="@android:color/white">
 
 
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -23,7 +25,7 @@
 
             <TextView
                 android:id="@+id/textView6"
-                style="@style/Text_Normal"
+                style="@style/Text_Normal_NoEmphasized"
                 android:layout_marginStart="16dp"
                 android:layout_marginLeft="16dp"
                 android:text="Lista:"
@@ -37,11 +39,13 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
-                android:layout_marginLeft="16dp"
                 android:layout_marginEnd="16dp"
-                android:layout_marginRight="16dp"
+                android:backgroundTint="@color/colorPrimaryLight"
+                android:drawableTint="#FF0000"
+                android:foregroundTint="#00FF0D"
                 android:gravity="left"
                 android:hint="Comprar en Tottus"
+                android:textColorLink="@color/neutral"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/textView6"
@@ -52,41 +56,34 @@
         <TextView
             android:id="@+id/textView8"
             style="@style/Text_Normal_NoEmphasized"
-            android:layout_marginStart="16dp"
-            android:layout_marginLeft="16dp"
+            android:layout_marginStart="24dp"
             android:layout_marginTop="16dp"
             android:text="Agregar producto"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/constraintLayout" />
 
-        <ImageButton
-            android:id="@+id/iBtn_FragAlterList_filter"
-            style="@style/Btn_fullIcon_filter"
-            android:layout_marginTop="16dp"
-            android:layout_marginEnd="16dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView8" />
-
         <SearchView
             android:id="@+id/srchVw_FragAlterList_findProduct"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="16dp"
-            android:layout_marginEnd="16dp"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="4dp"
+            android:layout_marginEnd="24dp"
+            android:iconifiedByDefault="false"
             android:queryHint="Buscar producto"
             android:visibility="visible"
-            app:layout_constraintEnd_toStartOf="@+id/iBtn_FragAlterList_filter"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView8" />
 
         <TextView
             android:id="@+id/textView7"
+            style="@style/Text_Normal"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="32dp"
-            android:layout_marginTop="2dp"
-            android:text="Productos agregados"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="16dp"
+            android:text="Productos agregados:"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/rv_searchResult" />
 
@@ -117,10 +114,11 @@
                 android:id="@+id/btn_FrgAltrList__create_confirm"
                 style="@style/Btn_forBasicOptions"
                 android:layout_marginEnd="24dp"
-                android:layout_marginRight="24dp"
+                android:background="@drawable/style_button_common"
                 android:paddingLeft="28dp"
                 android:paddingRight="28dp"
                 android:text="REGISTRAR"
+                android:textColor="@color/black"
                 android:visibility="gone"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent" />
@@ -131,6 +129,7 @@
                 android:layout_marginStart="24dp"
                 android:layout_marginLeft="24dp"
                 android:text="CANCELAR"
+                android:textColor="@color/black"
                 android:visibility="gone"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent" />
@@ -175,10 +174,13 @@
             android:id="@+id/rv_searchResult"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
+            android:layout_marginStart="64dp"
             android:layout_marginTop="4dp"
-            android:layout_marginEnd="16dp"
-            app:layout_constraintEnd_toStartOf="@+id/iBtn_FragAlterList_filter"
+            android:layout_marginEnd="28dp"
+            android:background="#FFFFFF"
+            android:paddingLeft="4sp"
+            android:paddingRight="4sp"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHeight_max="172sp"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"

@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:tag="fragmentProductoMain"
+    android:background="#FAFAFA"
     tools:context=".Fragments.Frag_List__Main">
 
 
@@ -14,10 +15,10 @@
 
         <TextView
             android:id="@+id/textView5"
-            style="@style/Text_SubTitle"
+            style="@style/Text_Normal_Emphasized"
+            android:layout_marginStart="24dp"
             android:layout_marginTop="24dp"
             android:text="Organiza tus listas de compras, aquí"
-            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 

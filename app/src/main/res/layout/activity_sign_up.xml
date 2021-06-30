@@ -3,31 +3,47 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="match_parent"
+    android:background="#FFFFFF"
     android:orientation="vertical"
     tools:context=".SignUpActivity">
 
 
     <ImageView
         android:id="@+id/imageView2"
-        android:layout_width="482dp"
-        android:layout_height="182dp"
-        android:src="@drawable/ic_launcher_foreground"
+        android:layout_width="94dp"
+        android:layout_height="89dp"
+        android:layout_marginTop="8dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:src="@drawable/ic_launcher_foreground"
-        tools:srcCompat="@tools:sample/backgrounds/scenic" />
+        app:layout_constraintTop_toBottomOf="@+id/lblLoadingText4"
+        app:srcCompat="@drawable/ic_logo" />
+
+    <TextView
+        android:id="@+id/lblLoadingText4"
+        style="@style/Text_businessName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="48dp"
+        android:fontFamily="@font/business_font"
+        android:includeFontPadding="false"
+        android:text="MeFalta"
+        android:textColor="@color/colorPrimary"
+        android:textSize="44sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <LinearLayout
         android:id="@+id/linearLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
-        android:layout_marginBottom="36dp"
+        android:layout_marginBottom="8dp"
         android:orientation="vertical"
         app:layout_constraintBottom_toTopOf="@+id/btnSignUp_cancel"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView2">
 
@@ -61,13 +77,15 @@
         <Button
             android:id="@+id/btnSignUp_signUp"
             style="@style/Btn_Common"
-            android:text="REGISTRAR CUENTA" />
+            android:text="REGISTRAR CUENTA"
+            android:textStyle="normal" />
     </LinearLayout>
 
     <Button
         android:id="@+id/btnSignUp_cancel"
         style="@style/Btn_Link"
-        android:layout_marginBottom="32dp"
+        android:layout_marginBottom="24dp"
+        android:stateListAnimator="@null"
         android:text="Cancelar"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

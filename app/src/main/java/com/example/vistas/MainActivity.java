@@ -1,13 +1,21 @@
 package com.example.vistas;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.View;
 import android.widget.TextView;
 
 import com.example.vistas.Commons.Codes;
 import com.example.vistas.Commons.CommonMethods;
+import com.example.vistas.DAOs.CategoriaDAO;
+import com.example.vistas.DAOs.ListaDAO;
+import com.example.vistas.DAOs.ProductoDAO;
+import com.example.vistas.DAOs.Rela_ListaProductoDAO;
+import com.example.vistas.DAOs.Rela_ProductoCategoriaDAO;
 import com.example.vistas.DTOs.Usuario;
+import com.example.vistas.Interfaces.Inter_FragmentManager;
+import com.example.vistas.Interfaces.Inter_OnBackPressed;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -15,6 +23,10 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentActivity;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
@@ -23,13 +35,16 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
-public class MainActivity extends AppCompatActivity  {
+public class MainActivity extends AppCompatActivity {
 
     private AppBarConfiguration mAppBarConfiguration;
     private NavigationView navigationView;
 
     public static Usuario usuario;
     public static DataSnapshot dataSnapshot;
+
+//    android.app.FragmentTransaction transaction;
+    FragmentManager fragmentManager;
 
     DatabaseReference dbReference;
 
@@ -42,7 +57,7 @@ public class MainActivity extends AppCompatActivity  {
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-//        createLocal_dummyData();
+//        create_dummyData();
 
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         navigationView = findViewById(R.id.nav_view);
@@ -59,19 +74,20 @@ public class MainActivity extends AppCompatActivity  {
 
         cm = new CommonMethods(this);
 
+
+        fragmentManager = getSupportFragmentManager();
+
         setUp_familyName();
 
         setUp_firebaseListener();
     }
 
-    private void createLocal_dummyData() {
-        //! ->
-//        //! DUMMY DATA
-//        new ListaDAO(this).DummyData_insert();
-//        new ProductoDAO(this).DummyData_insert();
-//        new CategoriaDAO(this).DummyData_insert();
-//        new Rela_ProductoCategoriaDAO(this).DummyData_insert();
-//        new Rela_ListaProductoDAO(this).DummyData_insert();
+    private void create_dummyData() {
+        new ListaDAO(this).DummyData_insert();
+        new ProductoDAO(this).DummyData_insert();
+        new CategoriaDAO(this).DummyData_insert();
+        new Rela_ProductoCategoriaDAO(this).DummyData_insert();
+        new Rela_ListaProductoDAO(this).DummyData_insert();
     }
 
     public void setUp_familyName() {
@@ -80,14 +96,16 @@ public class MainActivity extends AppCompatActivity  {
         lblHeader.setText(usuario.getNombreFamiliar());
     }
 
-    private void setUp_firebaseListener(){
+    private void setUp_firebaseListener() {
 
         dbReference = FirebaseDatabase.getInstance().getReference().child("Usuario").child(usuario.getIdUsario());
 
         ValueEventListener postListener = new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                cm.show_toast("hubo cambios");
+
+                // TODO aplicar los cambios a las pantallas desde aqui
+//                cm.show_toast("hubo cambios");
             }
 
             @Override
@@ -113,25 +131,88 @@ public class MainActivity extends AppCompatActivity  {
                 || super.onSupportNavigateUp();
     }
 
-    @Override
-    public void onBackPressed() {
-
-        int count = getSupportFragmentManager().getBackStackEntryCount();
-
-        if (count == 0) {
+//    @Override
+//    public void onBackPressed() {
+//        Fragment fragment = getSupportFragmentManager().findFragmentById(R.id.main_fragment_container);
+//        if (!(fragment instanceof Inter_OnBackPressed) || !((Inter_OnBackPressed) fragment).onBackPressed()) {
+//            cm.show_toast("salir");
 //            super.onBackPressed();
-            //additional code
-//            this.finish();
-//            System.exit(0);
-            cm.show_toast("0");
-            getSupportFragmentManager().popBackStack();
-        } else {
-            getSupportFragmentManager().popBackStack();
-            cm.show_toast("no es cero");
-        }
+//        } else {
+//            cm.show_toast("quedarse...");
+//        }
+//    }
 
+    //    @Override
+    public void changefragment(Fragment fragment, boolean clearStack) {
+//        transaction = fragmentManager
+//                .beginTransaction()
+//                .replace(R.id.main_fragment_container, fragment)
+//                .addToBackStack("main ");
+//
+//        for (int entry = 0; entry < getSupportFragmentManager().getBackStackEntryCount(); entry++) {
+//            Log.i("FRAGMENT MANAGER", "Found fragment: " + getSupportFragmentManager().getBackStackEntryAt(entry).getName());
+//        }
+//        transaction.commit();
 
+        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+        transaction.replace(R.id.main_fragment_container, fragment).addToBackStack("main").commit();
     }
+//
+//    @Override
+//    public void onBackPressed() {
+//
+//
+//        cm.show_log("FRAGMENT", "getFragmentManager:  " + getFragmentManager().getBackStackEntryCount());
+//        cm.show_log("FRAGMENT", "getSupportFragmentManager:  " + getSupportFragmentManager().getBackStackEntryCount());
+//
+//
+//        if(getFragmentManager().getBackStackEntryCount() == 0){
+//            cm.show_toast("Salir");
+//        }else{
+//            getFragmentManager().popBackStack();
+//        }
+//
+//    }
+
+
+
+//    @Override
+//    public void onBackPressed() {
+////
+////        if (getFragmentManager().getBackStackEntryCount() > 0) {
+////            getFragmentManager().popBackStack();
+////        } else {
+////            if (getFragmentManager().getBackStackEntryCount() == 0) {
+//////                new AlertDialog.Builder(this)
+//////                        .setMessage("Are you sure you want to exit?")
+//////                        .setCancelable(false)
+//////                        .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+//////                            public void onClick(DialogInterface dialog, int id) {
+//////                                MainActivity.this.finish();
+//////                            }
+//////                        })
+//////                        .setNegativeButton("No", null)
+//////                        .show();
+////
+////            } else {
+////                super.onBackPressed();
+////            }
+////        }
+//
+//        int count = getFragmentManager().getBackStackEntryCount();
+////        int count = getSupportFragmentManager().getBackStackEntryCount();
+//
+//        if (count == 0) {
+//            cm.show_toast("salir");
+//            Log.i("FRAGMENT MANAGER", "Intenta salir");
+//            //            this.finish();
+////            System.exit(0);
+//
+//        } else {
+//            Log.i("FRAGMENT MANAGER", "Retroceder frament");
+//            getFragmentManager().popBackStack();
+//        }
+//    }
 
 
 }

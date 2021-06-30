@@ -4,6 +4,7 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.os.Bundle;
 
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -19,6 +20,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.vistas.Commons.CommonMethods;
 import com.example.vistas.DAOs.ListaDAO;
 import com.example.vistas.DAOs.ProductoDAO;
 import com.example.vistas.DAOs.Rela_ListaProductoDAO;
@@ -28,7 +30,9 @@ import com.example.vistas.Commons.Code_DB;
 import com.example.vistas.Commons.Code_Error;
 import com.example.vistas.Commons.Codes;
 import com.example.vistas.DTOs.Rela_ProductoLista;
+import com.example.vistas.Interfaces.Inter_OnBackPressed;
 import com.example.vistas.Interfaces.Inter__RVA__Item_CheckBox;
+import com.example.vistas.MainActivity;
 import com.example.vistas.R;
 import com.example.vistas.RV_Adapters.RVA__CheckBox_Producto;
 
@@ -36,7 +40,9 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
-public class Frag_List__Process extends Fragment implements Inter__RVA__Item_CheckBox<Producto>, CompoundButton.OnCheckedChangeListener, View.OnClickListener, Code_Error {
+public class Frag_List__Process extends Fragment implements Inter__RVA__Item_CheckBox<Producto>,
+        CompoundButton.OnCheckedChangeListener, View.OnClickListener,
+        Code_Error {
 
     TextView lblNombre;
     EditText txtCosto;
@@ -91,6 +97,9 @@ public class Frag_List__Process extends Fragment implements Inter__RVA__Item_Che
 
         checkBox = view.findViewById(R.id.chkBx_frgListProcess_checkAll);
         checkBox.setOnCheckedChangeListener(this);
+
+        ((AppCompatActivity) getActivity()).getSupportActionBar().setTitle("Lista comprada");
+
     }
 
     private void setUp_name() {
@@ -309,8 +318,10 @@ public class Frag_List__Process extends Fragment implements Inter__RVA__Item_Che
     }
 
     private void fragment_done() {
+
+//        ((MainActivity)getActivity()).changefragment(new Frag_Economy__Main(), true);
         FragmentTransaction transaction = getFragmentManager().beginTransaction();
-        transaction.replace(R.id.main_fragment_container, new Frag_Economy__Main()).addToBackStack("tag").commit();
+        transaction.replace(R.id.main_fragment_container, new Frag_Economy__Main()).addToBackStack("main").commit();
     }
 
     // ***
@@ -364,4 +375,16 @@ public class Frag_List__Process extends Fragment implements Inter__RVA__Item_Che
                 break;
         }
     }
+
+//    @Override
+//    public boolean onBackPressed() {
+//        new CommonMethods(getContext()).show_toast("alter product");
+//        return false;
+////        if (myCondition) {
+////            //action not popBackStack
+////            return true;
+////        } else {
+////            return false;
+////        }
+//    }
 }

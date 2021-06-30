@@ -4,12 +4,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#FAFAFA"
     tools:context=".Fragments.Frag_Economy__Main">
 
 
     <TextView
         android:id="@+id/textView13"
-        style="@style/Text_Normal"
+        style="@style/Text_Normal_NoEmphasized"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
@@ -23,7 +24,7 @@
         style="@style/Text_MainTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="8dp"
         android:text="Diciembre"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -69,11 +70,10 @@
 
     <TextView
         android:id="@+id/textView16"
-        style="@style/Text_SubTitle"
+        style="@style/Text_Normal_Emphasized"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
-        android:layout_marginRight="8dp"
         android:layout_marginBottom="48dp"
         android:text="Dinero restante: S/"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -87,6 +87,7 @@
         android:layout_marginEnd="36dp"
         android:layout_marginBottom="48dp"
         android:text="null"
+        android:textColor="@color/colorPrimary"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 

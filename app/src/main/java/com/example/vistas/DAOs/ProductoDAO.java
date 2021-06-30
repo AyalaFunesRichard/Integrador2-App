@@ -24,21 +24,21 @@ public class ProductoDAO implements Code_DB {
     public ArrayList<Producto> DummyData_insert() {
         ArrayList<Producto> lstProductos = new ArrayList<>();
 
-//        insert(new Producto(1, "Manzanas", 1, "19-05-2021", ""));
-//        insert(new Producto(2, "Peras", 1, "19-05-2021", ""));
-//        insert(new Producto(3, "Platanos", 1, "19-05-2021", ""));
-//        insert(new Producto(4, "Arroz", 1, "19-05-2021", ""));
-//        insert(new Producto(5, "Menestra", 1, "19-05-2021", ""));
-//        insert(new Producto(6, "Galletas perro", 1, "19-05-2021", ""));
-//        insert(new Producto(7, "Pastilla dolor cabeza", 1, "19-05-2021", ""));
-//        insert(new Producto(8, "Ibuprofeno", 1, "19-05-2021", ""));
-//        insert(new Producto(9, "Galleta gato", 1, "19-05-2021", ""));
-//        insert(new Producto(10, "Maiz tordo", 1, "19-05-2021", ""));
-//        // <- 10
-//        insert(new Producto(11, "Queso", 1, "19-05-2021", ""));
-//        insert(new Producto(9, "Galleta gato", 1, "19-05-2021", ""));
-//        insert(new Producto(10, "Maiz tordo", 1, "19-05-2021", ""));
-//        insert(new Producto(11, "Aceituna", 1, "19-05-2021", ""));
+        insert(new Producto("1", "Manzanas", 1, "19-05-2021", ""), false);
+        insert(new Producto("2", "Peras", 1, "19-05-2021", ""), false);
+        insert(new Producto("3", "Platanos", 1, "19-05-2021", ""), false);
+        insert(new Producto("4", "Arroz", 1, "19-05-2021", ""), false);
+        insert(new Producto("5", "Menestra", 1, "19-05-2021", ""), false);
+        insert(new Producto("6", "Galletas perro", 1, "19-05-2021", ""), false);
+        insert(new Producto("7", "Pastilla dolor cabeza", 1, "19-05-2021", ""), false);
+        insert(new Producto("8", "Ibuprofeno", 1, "19-05-2021", ""), false);
+        insert(new Producto("9", "Galleta gato", 1, "19-05-2021", ""), false);
+        insert(new Producto("10", "Maiz tordo", 1, "19-05-2021", ""), false);
+        // <- 10
+        insert(new Producto("11", "Queso", 1, "19-05-2021", ""), false);
+        insert(new Producto("9", "Galleta gato", 1, "19-05-2021", ""), false);
+        insert(new Producto("10", "Maiz tordo", 1, "19-05-2021", ""), false);
+        insert(new Producto("11", "Aceituna", 1, "19-05-2021", ""), false);
         // <- 14
         return lstProductos;
     }

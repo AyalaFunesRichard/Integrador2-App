@@ -94,8 +94,6 @@ public class Load_Main extends AppCompatActivity implements Codes_Logs, Code_DB 
 
                     usuario = dataSnapshot.getValue(Usuario.class);
 
-                    cm.show_toast("Bienvenido " + usuario.getNombreFamiliar()); // Todo borrar esta alerta
-
                     setUp_Data__Productos();
 
                     setUp_Data__Listas();

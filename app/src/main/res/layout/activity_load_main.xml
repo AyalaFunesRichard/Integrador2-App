@@ -7,23 +7,39 @@
     tools:context=".Load_Main">
 
     <TextView
-        android:id="@+id/textView18"
+        android:id="@+id/lblLoadingText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="48dp"
         android:text="Cargando datos..."
+        android:textColor="@color/black_lighter"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/lblLoadingText2" />
+
+    <TextView
+        android:id="@+id/lblLoadingText2"
+        style="@style/Text_businessName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:fontFamily="@font/business_font"
+        android:includeFontPadding="false"
+        android:text="MeFalta"
+        android:textColor="@color/colorPrimary"
+        android:textSize="50sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView4" />
 
     <ImageView
         android:id="@+id/imageView4"
-        android:layout_width="165dp"
-        android:layout_height="177dp"
-        android:layout_marginTop="96dp"
-        android:src="@mipmap/ic_launcher"
+        android:layout_width="213dp"
+        android:layout_height="227dp"
+        android:layout_marginTop="76dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_logo" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

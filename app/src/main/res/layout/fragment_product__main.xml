@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#FAFAFA"
     tools:context=".Fragments.Frag_Product__Main">
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -12,10 +13,10 @@
 
         <TextView
             android:id="@+id/textView3"
-            style="@style/Text_SubTitle"
+            style="@style/Text_Normal_Emphasized"
+            android:layout_marginStart="24dp"
             android:layout_marginTop="24dp"
-            android:text="Registrar lo que te falta aquí"
-            app:layout_constraintEnd_toEndOf="parent"
+            android:text="Registrar lo que te falta comprar aquí"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -23,11 +24,7 @@
             android:id="@+id/rv_FragProdMain_ProductList"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_marginStart="16dp"
-            android:layout_marginLeft="16dp"
             android:layout_marginTop="16dp"
-            android:layout_marginEnd="16dp"
-            android:layout_marginRight="16dp"
             android:layout_marginBottom="16dp"
             android:minHeight="144sp"
             app:layout_constraintBottom_toTopOf="@+id/btn_FrgProMain_registerProduct"
@@ -40,9 +37,7 @@
             android:id="@+id/btn_FrgProMain_registerProduct"
             style="@style/Btn_Shrink"
             android:layout_marginStart="16dp"
-            android:layout_marginLeft="16dp"
             android:layout_marginEnd="16dp"
-            android:layout_marginRight="16dp"
             android:layout_marginBottom="24dp"
             android:text="Registrar Producto"
             app:layout_constraintBottom_toBottomOf="parent"

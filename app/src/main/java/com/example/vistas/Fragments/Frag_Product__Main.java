@@ -2,6 +2,7 @@ package com.example.vistas.Fragments;
 
 import android.os.Bundle;
 
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
@@ -17,6 +18,8 @@ import com.example.vistas.DAOs.ProductoDAO;
 import com.example.vistas.DTOs.Lista;
 import com.example.vistas.DTOs.Producto;
 import com.example.vistas.Commons.Codes;
+import com.example.vistas.Interfaces.Inter_OnBackPressed;
+import com.example.vistas.MainActivity;
 import com.example.vistas.R;
 import com.example.vistas.RV_Adapters.RVA__ItemOption;
 
@@ -34,6 +37,7 @@ public class Frag_Product__Main extends Fragment implements RVA__ItemOption.Inte
     public Frag_Product__Main() {
         // Required empty public constructor
     }
+    View view;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -41,10 +45,15 @@ public class Frag_Product__Main extends Fragment implements RVA__ItemOption.Inte
     }
 
     @Override
+    public void onStart() {
+        ((AppCompatActivity) getActivity()).getSupportActionBar().setTitle("Productos faltantes");
+        super.onStart();
+    }
+
+    @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_product__main, container, false);
-
+        view = inflater.inflate(R.layout.fragment_product__main, container, false);
         /* Setting up for next frame*/
         btnRegistrar = view.findViewById(R.id.btn_FrgProMain_registerProduct);
         btnRegistrar.setOnClickListener(new View.OnClickListener() {
@@ -63,7 +72,6 @@ public class Frag_Product__Main extends Fragment implements RVA__ItemOption.Inte
         return view;
     }
 
-
     private void updateProductList(View view) {
 
         lstProductos = new ProductoDAO(getContext()).select_all();
@@ -75,7 +83,6 @@ public class Frag_Product__Main extends Fragment implements RVA__ItemOption.Inte
         rvItemOption.setLayoutManager(new LinearLayoutManager(getContext()));
         rvItemOption.setAdapter(rva_listado);
     }
-
 
     // * Moving to other fragment ->
     private void openFragment(Fragment nextFragment, String fragmentFor, Producto producto) {
@@ -92,20 +99,47 @@ public class Frag_Product__Main extends Fragment implements RVA__ItemOption.Inte
 
         nextFragment.setArguments(bundle);
 
-//        FragmentTransaction transaction = getFragmentManager().beginTransaction();
-//        transaction.replace(R.id.main_fragment_container, nextFragment).addToBackStack("tag").commit();
 
-        FragmentManager fragmentManager = getFragmentManager ();
-        fragmentManager.beginTransaction()
-                .replace(R.id.main_fragment_container, nextFragment, null)
-                .setReorderingAllowed(true)
-                .addToBackStack("tag")
-                .commit();
+//        ((MainActivity)getActivity()).changefragment(nextFragment, false);
+
+//                FragmentManager fragmentManager = getFragmentManager ();
+//        FragmentManager fragmentManager = getFragmentManager();
+//        fragmentManager.beginTransaction()
+//                .replace(R.id.main_fragment_container, nextFragment, null)
+//                .setReorderingAllowed(true)
+//                .addToBackStack("main")
+//                .commit();
 
 
 
-//        FragmentTransaction transaction = fragmentManager.beginTransaction();
-//        transaction.add()
+
+
+
+//        this.changefragment(nextFragment, false);
+
+
+        FragmentTransaction transaction = getFragmentManager().beginTransaction();
+        transaction.replace(R.id.main_fragment_container, nextFragment).addToBackStack("tag").commit();
+
+
+
+
+
+
+
+//        Fragment fragment = new MyFragment();
+//// note getSupportFragmentManager() instead getFragmentManager()
+//        FragmentManager fragmentManager = getSupportFragmentManager();
+//        fragmentManager.beginTransaction()
+//                .replace(R.id.frame, fragment)
+//                .addToBackStack("main")
+//                .commit();
+//
+//        fragmentManager.executePendingTransactions();
+
+
+
+
     }
 
     @Override
@@ -115,7 +149,6 @@ public class Frag_Product__Main extends Fragment implements RVA__ItemOption.Inte
 
         openFragment(nextFragment, Codes.FRAGMENT_FOR_EDIT, producto);
     }
-
 
     @Override
     public void openFragment(Lista lista) {
@@ -127,5 +160,7 @@ public class Frag_Product__Main extends Fragment implements RVA__ItemOption.Inte
         /*Keep this empty, its just for the Interface from RVA__ItemOption*/
 
     }
+
+
 
 }

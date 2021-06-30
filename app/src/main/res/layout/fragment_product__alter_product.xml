@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#FAFAFA"
     tools:context=".Fragments.Frag_Product__AlterProduct">
 
 
@@ -27,10 +28,11 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
-            android:layout_marginLeft="16dp"
+            android:backgroundTint="@color/colorPrimaryLight"
             android:ems="10"
             android:hint="ejem: Manzanas"
             android:inputType="textPersonName"
+            android:textColorLink="#80F100"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView3" />
 
@@ -38,10 +40,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="32dp"
-            android:layout_marginLeft="32dp"
             android:layout_marginTop="48dp"
             android:layout_marginEnd="16dp"
-            android:layout_marginRight="16dp"
             android:maxHeight="36sp"
             android:orientation="vertical"
             app:layout_constraintEnd_toEndOf="parent"
@@ -66,7 +66,9 @@
 
         <Button
             android:id="@+id/btn_FrgAltrProd__register_confirm"
-            style="@style/Btn_forBasicOptions"
+
+
+            style="@style/Btn_Shrink"
             android:layout_marginEnd="16dp"
             android:layout_marginRight="16dp"
             android:layout_marginBottom="24dp"
@@ -78,9 +80,11 @@
             app:layout_constraintEnd_toEndOf="parent" />
         <Button
             android:id="@+id/btn_FrgAltrProd__register_cancel"
-            style="@style/Btn_forBasicOptions"
+
             android:layout_marginStart="16dp"
             android:layout_marginLeft="16dp"
+
+            style="@style/Btn_Shrink"
             android:layout_marginBottom="24dp"
             android:text="CANCELAR"
             android:visibility="gone"

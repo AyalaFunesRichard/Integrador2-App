@@ -17,6 +17,7 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.Toast;
 
+import com.example.vistas.Commons.CommonMethods;
 import com.example.vistas.DAOs.CategoriaDAO;
 import com.example.vistas.DAOs.ProductoDAO;
 import com.example.vistas.DAOs.Rela_ProductoCategoriaDAO;
@@ -26,6 +27,7 @@ import com.example.vistas.Commons.Code_Error;
 import com.example.vistas.Commons.Codes;
 import com.example.vistas.Commons.Code_DB;
 import com.example.vistas.DTOs.Rela_ProductoCategoria;
+import com.example.vistas.Interfaces.Inter_OnBackPressed;
 import com.example.vistas.Interfaces.Inter__RVA__Item_CheckBox;
 import com.example.vistas.R;
 import com.example.vistas.RV_Adapters.RVA__CheckBox_Categoria;
@@ -35,7 +37,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.Objects;
 
-public class Frag_Product__AlterProduct extends Fragment implements Code_Error, Inter__RVA__Item_CheckBox<Categoria> {
+public class Frag_Product__AlterProduct extends Fragment implements Code_Error, Inter__RVA__Item_CheckBox<Categoria>, Inter_OnBackPressed {
 
     EditText txtNombre;
 
@@ -515,4 +517,17 @@ public class Frag_Product__AlterProduct extends Fragment implements Code_Error, 
         }
         producto.setLstCategoria(lstAux);
     }
+
+    @Override
+    public boolean onBackPressed() {
+        new CommonMethods(getContext()).show_toast("alter product");
+        return false;
+//        if (myCondition) {
+//            //action not popBackStack
+//            return true;
+//        } else {
+//            return false;
+//        }
+    }
+
 }

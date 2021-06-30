@@ -6,6 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -15,6 +16,7 @@ import com.example.vistas.DAOs.ListaDAO;
 import com.example.vistas.DTOs.Lista;
 import com.example.vistas.DTOs.Producto;
 import com.example.vistas.Commons.Codes;
+import com.example.vistas.MainActivity;
 import com.example.vistas.R;
 import com.example.vistas.RV_Adapters.RVA__ItemOption;
 
@@ -41,6 +43,7 @@ public class Frag_List__Main extends Fragment implements RVA__ItemOption.Inter_R
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_list__main, container, false);
+        ((AppCompatActivity) getActivity()).getSupportActionBar().setTitle("Lista de compras");
 
         /* Setting up for next frame*/
         btnRegistrar = view.findViewById(R.id.btn_FrgListMain_createList);
@@ -62,11 +65,6 @@ public class Frag_List__Main extends Fragment implements RVA__ItemOption.Inter_R
 
 
     private void updateProductList() {
-
-        // TODO:
-        // TODO: only list, the ones that are in status ACTIVE
-        // TODO:
-
         lstListas = new ListaDAO(getContext()).select_all_NoComprada();
 
         Object lstObject = lstListas;
@@ -76,13 +74,6 @@ public class Frag_List__Main extends Fragment implements RVA__ItemOption.Inter_R
         rvItemOption.setLayoutManager(new LinearLayoutManager(getContext()));
         rvItemOption.setAdapter(rva_listado);
     }
-
-    /*
-     * ir otra frag
-     *   -> si CREAR ->
-     *   -> si EDITAR -> productoId
-     *   enviar tipo frag
-     * */
 
     //============
     // Moving to other fragment ->
@@ -101,8 +92,10 @@ public class Frag_List__Main extends Fragment implements RVA__ItemOption.Inter_R
 
         nextFragment.setArguments(bundle);
 
+//        ((MainActivity)getActivity()).changefragment(nextFragment, false);
+
         FragmentTransaction transaction = getFragmentManager().beginTransaction();
-        transaction.replace(R.id.main_fragment_container, nextFragment).addToBackStack("tag").commit();
+        transaction.replace(R.id.main_fragment_container, nextFragment).addToBackStack("main").commit();
     }
     @Override
     public void openFragment(Lista lista) {

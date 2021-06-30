@@ -24,12 +24,12 @@ public class ListaDAO implements Code_DB {
     public ArrayList<Lista> DummyData_insert() {
         ArrayList<Lista> lstProductos = new ArrayList<>();
 
-//        insert(new Lista(-1, "Tottus", -1, "", 1, "19-05-2021", ""));
-//        insert(new Lista(-1, "Veterinario", -1, "", 1, "10-05-2021", ""));
-//        insert(new Lista(-1, "Por si gana castillo", -1, "", 1, "19-04-2021", ""));
-//        insert(new Lista(-1, "Por si gana keiko", -1, "", 1, "19-04-2021", ""));
-//        insert(new Lista(-1, "Utiles escolares", 133, "", 2, "19-04-2021", ""));
-//        insert(new Lista(-1, "Mercado", 150, "", 2, "19-04-2021", ""));
+        insert(new Lista("-1", "Tottus", -1, "", 1, "19-05-2021", ""), false);
+        insert(new Lista("-1", "Veterinario", -1, "", 1, "10-05-2021", ""), false);
+        insert(new Lista("-1", "Por si gana castillo", -1, "", 1, "19-04-2021", ""), false);
+        insert(new Lista("-1", "Por si gana keiko", -1, "", 1, "19-04-2021", ""), false);
+        insert(new Lista("-1", "Utiles escolares", 133, "", 2, "19-04-2021", ""), false);
+        insert(new Lista("-1", "Mercado", 150, "", 2, "19-04-2021", ""), false);
 
         return lstProductos;
     }

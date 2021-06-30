@@ -5,6 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginBottom="12sp"
+    android:paddingLeft="16sp"
+    android:paddingRight="16sp"
     tools:visibility="gone">
 
 

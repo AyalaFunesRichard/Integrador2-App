@@ -6,6 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     app:layout_constrainedHeight="true"
+    android:background="#fff"
     tools:context=".LoginActivity">
 
     <!--    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"-->
@@ -16,26 +17,27 @@
     <!--        android:layout_height="match_parent"-->
     <!--        tools:context="com.example.tritonix.scotproyect.PictureActivity">-->
 
-    <ImageView
-        android:id="@+id/imageView3"
-        android:layout_width="177dp"
-        android:layout_height="171dp"
-        android:layout_alignParentTop="true"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginTop="64dp"
-        android:src="@drawable/ic_launcher_foreground"
+
+    <TextView
+        android:id="@+id/lblLoadingText3"
+        style="@style/Text_businessName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="68dp"
+        android:fontFamily="@font/business_font"
+        android:includeFontPadding="false"
+        android:text="MeFalta"
+        android:textColor="@color/colorPrimary"
+        android:textSize="44sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:src="@drawable/ic_launcher_foreground"
-        tools:srcCompat="@tools:sample/avatars" />
+        app:layout_constraintTop_toTopOf="parent" />
 
-
-    <LinearLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/linearLayout2"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="36dp"
+        android:layout_marginTop="32dp"
         android:orientation="vertical"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -45,25 +47,36 @@
             android:id="@+id/etLogin_username"
             style="@style/ET_Common"
             android:hint="Correo"
-            android:inputType="textEmailAddress" />
+            android:inputType="textEmailAddress"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <EditText
             android:id="@+id/etLogin_password"
             style="@style/ET_Common"
-            android:layout_marginTop="36dp"
-            android:hint="Contraseña" />
+            android:layout_marginTop="32dp"
+            android:hint="Contraseña"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/etLogin_username" />
 
         <Button
             android:id="@+id/btnLogin_signIn"
             style="@style/Btn_Common"
-            android:text="INICIAR SESIÓN" />
+            android:layout_marginTop="72dp"
+            android:text="INICIAR SESIÓN"
+            android:textStyle="normal"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/etLogin_password"
+            tools:layout_editor_absoluteX="16dp" />
 
-    </LinearLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="36dp"
+        android:layout_marginBottom="16dp"
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -81,9 +94,23 @@
             android:id="@+id/btnLogin_signUp"
             style="@style/Btn_Link"
             android:layout_width="wrap_content"
-            android:layout_marginTop="16sp"
-            android:text="CREAR CUENTA" />
+            android:layout_marginTop="0sp"
+            android:capitalize="sentences"
+            android:stateListAnimator="@null"
+            android:text="Crear cuenta"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
     </LinearLayout>
+
+    <ImageView
+        android:id="@+id/imageView3"
+        android:layout_width="94dp"
+        android:layout_height="89dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/lblLoadingText3"
+        app:srcCompat="@drawable/ic_logo" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

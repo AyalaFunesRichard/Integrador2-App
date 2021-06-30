@@ -23,7 +23,7 @@
     <!---->
     <!---->
     <!---->
-    <!--    TEXT-->
+    <!-- *   TEXT-->
     <style name="Text_Base">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
@@ -72,6 +72,15 @@
         <item name="android:layout_gravity">center_vertical</item>
         <item name="android:layout_marginRight">16sp</item>
         <item name="android:layout_weight">1</item>
+        <item name="android:textSize">18sp</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:layout_marginBottom">0dp</item>
+    </style>
+
+    <style name="Text_businessName" parent="Text_Base">
+        <item name="android:layout_gravity">center_vertical</item>
+        <item name="android:layout_marginRight">16sp</item>
+        <item name="android:layout_weight">1</item>
         <item name="android:gravity">center_vertical</item>
         <item name="android:layout_marginBottom">0dp</item>
     </style>
@@ -80,7 +89,7 @@
     <!---->
     <!---->
     <!---->
-    <!--EDIT TEXT-->
+    <!-- * EDIT TEXT-->
     <style name="ET_Base">
         <item name="android:inputType">textPersonName</item>
         <item name="android:ems">10</item>
@@ -110,13 +119,13 @@
     <!---->
     <!---->
     <!---->
-    <!--    BUTONS-->
+    <!-- *   BUTONS-->
     <style name="Button_base">
         <item name="android:layout_gravity">center</item>
         <item name="android:layout_marginTop">24sp</item>
         <item name="android:layout_marginLeft">40sp</item>
         <item name="android:layout_marginRight">40sp</item>
-        <item name="android:textColor">#ffffff</item>
+        <item name="android:textColor">@color/black</item>
         <item name="android:textStyle">bold</item>
         <item name="android:textSize">18sp</item>
     </style>
@@ -124,17 +133,18 @@
     <style name="Btn_fullIcon">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
-        <item name="android:background">@drawable/custom_button</item>
+<!--        <item name="android:background">#FFD8A6</item>-->
+        <item name="android:background">@drawable/style_button_common</item>
         <item name="android:cropToPadding">true</item>
         <item name="android:padding">8sp</item>
     </style>
 
     <style name="Btn_forBasicOptions">
-        <item name="android:textColor">#ffffff</item>
-        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">@color/black</item>
+        <item name="android:textStyle">normal</item>
         <item name="android:textSize">18sp</item>
         <item name="android:layout_gravity">center_vertical</item>
-        <item name="android:background">@drawable/custom_button</item>
+        <item name="android:background">@drawable/style_button_common</item>
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
 
@@ -142,13 +152,15 @@
         <item name="android:paddingBottom">12sp</item>
         <item name="android:paddingLeft">18sp</item>
         <item name="android:paddingRight">18sp</item>
-
     </style>
 
     <!---->
     <!-- BUTTONS - > commons-->
     <style name="Btn_Common" parent="Button_base">
-        <item name="android:background">@drawable/custom_button</item>
+        <item name="android:background">#fff</item>
+        <item name="android:textColor">@color/colorPrimary</item>
+        <item name="android:stateListAnimator">@null</item>
+<!--        <item name="android:background">@drawable/style_button_common</item>-->
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:paddingTop">12sp</item>
@@ -160,15 +172,28 @@
         <item name="android:layout_height">wrap_content</item>
         <item name="android:paddingLeft">36sp</item>
         <item name="android:paddingRight">36sp</item>
+        <item name="android:paddingTop">6sp</item>
+        <item name="android:paddingBottom">6sp</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:textColor">@color/emphasis</item>
+        <item name="android:background">#fff</item>
+        <item name="android:textAppearance">@style/TextAppearance.AppCompat.Body1</item>
     </style>
 
     <style name="Btn_Shrink" parent="Button_base">
-        <item name="android:background">@drawable/custom_button</item>
+        <item name="android:background">@drawable/style_button_common</item>
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:paddingLeft">36sp</item>
+        <item name="android:textStyle">normal</item>
         <item name="android:paddingRight">36sp</item>
     </style>
+
+    <style name="Btn_Common2" parent="Btn_Common">
+        <item name="android:background">@drawable/style_button_common_2</item>
+    </style>
+
+
 
     <!---->
     <!-- BUTTON -> full icon-->

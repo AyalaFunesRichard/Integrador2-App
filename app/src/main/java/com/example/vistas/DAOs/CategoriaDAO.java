@@ -22,11 +22,11 @@ public class CategoriaDAO implements Code_DB {
 
     // ->
     public void DummyData_insert() {
-//        insert(new Categoria(-1, "En Tottus", null, Codes.CATEGORIA_ESTADO_ACTIVO, "19-05-2021", ""));
-//        insert(new Categoria(-1, "Opcional", null, Codes.CATEGORIA_ESTADO_ACTIVO, "20-05-2021", ""));
-//        insert(new Categoria(-1, "Donde sea", null, Codes.CATEGORIA_ESTADO_ACTIVO, "20-05-2021", ""));
-//        insert(new Categoria(-1, "Solo en mercado", null, Codes.CATEGORIA_ESTADO_ACTIVO, "21-05-2021", ""));
-//        insert(new Categoria(-1, "Para el michi", null, Codes.CATEGORIA_ESTADO_ACTIVO, "22-05-2021", ""));
+        insert(new Categoria("-1", "En Tottus", null, Codes.CATEGORIA_ESTADO_ACTIVO, "19-05-2021", ""), false);
+        insert(new Categoria("-1", "Opcional", null, Codes.CATEGORIA_ESTADO_ACTIVO, "20-05-2021", ""), false);
+        insert(new Categoria("-1", "Donde sea", null, Codes.CATEGORIA_ESTADO_ACTIVO, "20-05-2021", ""), false);
+        insert(new Categoria("-1", "Solo en mercado", null, Codes.CATEGORIA_ESTADO_ACTIVO, "21-05-2021", ""), false);
+        insert(new Categoria("-1", "Para el michi", null, Codes.CATEGORIA_ESTADO_ACTIVO, "22-05-2021", ""), false);
     }
     // <-
 

@@ -19,6 +19,7 @@ import android.widget.ImageButton;
 import android.widget.SearchView;
 import android.widget.Toast;
 
+import com.example.vistas.Commons.CommonMethods;
 import com.example.vistas.DAOs.ListaDAO;
 import com.example.vistas.DAOs.ProductoDAO;
 import com.example.vistas.DAOs.Rela_ListaProductoDAO;
@@ -31,6 +32,7 @@ import com.example.vistas.DTOs.Rela_ProductoLista;
 import com.example.vistas.Interfaces.Inter_OnBackPressed;
 import com.example.vistas.Interfaces.Inter__RVA__Item_CheckBox;
 import com.example.vistas.Interfaces.Inter__RVA__One_Item;
+import com.example.vistas.MainActivity;
 import com.example.vistas.R;
 import com.example.vistas.RV_Adapters.RVA__CheckBox_Producto;
 import com.example.vistas.RV_Adapters.RVA__OneItem;
@@ -43,8 +45,7 @@ import java.util.stream.Collectors;
 
 public class Frag_List__AlterList extends Fragment implements Code_Error, Inter__RVA__Item_CheckBox<Producto>,
         Inter__RVA__One_Item, SearchView.OnQueryTextListener,
-        SearchView.OnCloseListener, View.OnFocusChangeListener,
-        Inter_OnBackPressed {
+        SearchView.OnCloseListener, View.OnFocusChangeListener {
 
     private String fragmentFor = null; // recognize this fragment
 
@@ -109,6 +110,12 @@ public class Frag_List__AlterList extends Fragment implements Code_Error, Inter_
         }
 
         return view;
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        new CommonMethods(getContext()).show_toast(getFragmentManager().getBackStackEntryCount() + " ON START");
     }
 
     private final View.OnClickListener buttonListener = new View.OnClickListener() {
@@ -255,7 +262,7 @@ public class Frag_List__AlterList extends Fragment implements Code_Error, Inter_
                 case R.id.iBtn_FragAlterList__edit_ready:
 
                     // Validate if there are Productos checked
-                    if(lista.getLstProductos().isEmpty()) {
+                    if (lista.getLstProductos().isEmpty()) {
                         String msg = lista.getNombre() + " debe de tener por lo menos, un producto asociado.";
                         Toast.makeText(getContext(), msg, Toast.LENGTH_SHORT).show();
                         return;
@@ -268,8 +275,11 @@ public class Frag_List__AlterList extends Fragment implements Code_Error, Inter_
                     bundle.putSerializable(Codes.ARG_LISTA_CLASS, lista);
                     nextFragment.setArguments(bundle);
 
+
+//                    ((MainActivity) getActivity()).changefragment(nextFragment, false);
+//
                     FragmentTransaction transaction = getFragmentManager().beginTransaction();
-                    transaction.replace(R.id.main_fragment_container, nextFragment).addToBackStack("tag").commit();
+                    transaction.replace(R.id.main_fragment_container, nextFragment).addToBackStack("main").commit();
                     break;
 
                 default:
@@ -690,9 +700,15 @@ public class Frag_List__AlterList extends Fragment implements Code_Error, Inter_
     }
 
     // * Inter_OnBackPressed ->
-    @Override
-    public boolean onBackPressed() {
-//        popup_return();
-        return true;
-    }
+//    @Override
+//    public boolean onBackPressed() {
+//        new CommonMethods(getContext()).show_toast("alter product");
+//        return true;
+////        if (myCondition) {
+////            //action not popBackStack
+////            return true;
+////        } else {
+////            return false;
+////        }
+//    }
 }
