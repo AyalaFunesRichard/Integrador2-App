@@ -6,6 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -56,6 +57,8 @@ public class Frag_Economy__Main extends Fragment {
         lblRestante = view.findViewById(R.id.lbl_frgEconomy_Restante);
 
         rvContainer = view.findViewById(R.id.rv_frgEconomy);
+
+        ((AppCompatActivity) getActivity()).getSupportActionBar().setTitle("Presupuesto mensual");
 
         lstListas = get_listas();
 
