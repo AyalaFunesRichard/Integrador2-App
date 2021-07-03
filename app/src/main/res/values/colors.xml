@@ -14,7 +14,7 @@
 
     <color name="grey_lighter">#dfe4ea</color>
 
-    <color name="wraning">#ff6348</color>
+    <color name="wraning">#FF0000</color>
     <color name="neutral">#FFD8A6</color>
     <color name="emphasis">#1589B3</color>
     <color name="safe">#FAD09C</color>

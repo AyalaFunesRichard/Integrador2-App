@@ -118,18 +118,22 @@ public class PresupuestoDAO implements Code_DB {
     }
 
     // * UPDATE ->
-    public int update_where_idUsuario(Usuario usuario) {
+    public int update_where_idPresupuesto(Presupuesto presupuesto) {
+
+        DatabaseReference dbreference = FirebaseDatabase.getInstance().getReference(TABLE_USUARIO).child(idUsuario).child(TABLE_PRESUPUESTO).child(presupuesto.getIdPresupuesto());
+
+        dbreference.child("presupuesto").setValue(presupuesto.getPresupuesto());
+        dbreference.child(LOG_FECHA_MODIFICADO).setValue(presupuesto.getLog_fecha_modificado());
 
         ContentValues cv = new ContentValues();
-        cv.put("nombreFamiliar", usuario.getNombreFamiliar());
-        cv.put("correo", usuario.getCorreo());
-        cv.put(ESTADO, usuario.getEstado());
-        cv.put(LOG_FECHA_CREADO, usuario.getLog_fecha_creado());
-        cv.put(LOG_FECHA_ULTIMA_SESION, usuario.getLog_fecha_ultimaSesion());
+        cv.put("fecha", presupuesto.getFecha());
+        cv.put("monto", presupuesto.getPresupuesto());
+        cv.put(ESTADO, presupuesto.getEstado());
+        cv.put(LOG_FECHA_MODIFICADO, presupuesto.getLog_fecha_modificado());
 
         startConnection();
 
-        int rspt = dbConnection.update(TABLE_PRESUPUESTO, cv, "idUsuario = ?", new String[]{(usuario.getIdUsario() + "")});
+        int rspt = dbConnection.update(TABLE_PRESUPUESTO, cv, "idPresupuesto = ?", new String[]{(presupuesto.getIdPresupuesto() + "")});
 
         closeConnection();
 

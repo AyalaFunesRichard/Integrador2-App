@@ -1,9 +1,14 @@
 package com.example.vistas.Fragments;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.os.Bundle;
+import android.text.InputType;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -15,9 +20,11 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.vistas.Commons.CommonMethods;
 import com.example.vistas.DAOs.ListaDAO;
 import com.example.vistas.DAOs.PresupuestoDAO;
+import com.example.vistas.DAOs.UsuarioDAO;
 import com.example.vistas.DTOs.Lista;
 import com.example.vistas.DTOs.Presupuesto;
-import com.example.vistas.Commons.Codes;
+import com.example.vistas.DTOs.Usuario;
+import com.example.vistas.MainActivity;
 import com.example.vistas.R;
 import com.example.vistas.RV_Adapters.RVA__Economy_TwoText;
 
@@ -31,6 +38,8 @@ public class Frag_Economy__Main extends Fragment {
 
     RecyclerView rvContainer;
     RVA__Economy_TwoText rva_list;
+
+    ImageButton iBtn;
 
     Presupuesto presupuesto = null;
 
@@ -55,6 +64,13 @@ public class Frag_Economy__Main extends Fragment {
         lblMes = view.findViewById(R.id.lbl_frgEconomy_Mes);
         lblEstimado = view.findViewById(R.id.lbl_frgEconomy_Monto);
         lblRestante = view.findViewById(R.id.lbl_frgEconomy_Restante);
+        iBtn = view.findViewById(R.id.iBtn_edit);
+        iBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                showDialog_edit();
+            }
+        });
 
         rvContainer = view.findViewById(R.id.rv_frgEconomy);
 
@@ -73,6 +89,53 @@ public class Frag_Economy__Main extends Fragment {
         update_Listas();
 
         return view;
+    }
+
+    private void showDialog_edit() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+        builder.setTitle("Modificar presupuesto").setMessage("Ingrese el nuevo presupuesto para este mes");
+
+        final EditText txtInput = new EditText(getContext());
+        txtInput.setInputType(InputType.TYPE_NUMBER_FLAG_DECIMAL);
+        builder.setView(txtInput);
+
+        builder.setPositiveButton(getString(R.string.dialog_ans_confirm), new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+            }
+        });
+        builder.setNegativeButton(getString(R.string.dialog_ans_cancel), new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.cancel();
+            }
+        });
+
+        final AlertDialog dialog = builder.create();
+        dialog.show();
+
+        dialog.getButton(AlertDialog.BUTTON_POSITIVE).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                CommonMethods cm = new CommonMethods(v.getContext());
+
+                Double newPresupuesto = cm.validate_Presupuesto(txtInput.getText().toString());
+                if(newPresupuesto == -1) return;
+
+                String fechaMoficado = cm.getTime_ForDataBase();
+
+                presupuesto.setPresupuesto(newPresupuesto);
+                presupuesto.setLog_fecha_modificado(fechaMoficado);
+
+                new PresupuestoDAO(getContext()).update_where_idPresupuesto(presupuesto);
+
+                setUp_Presupuesto();
+                setUp_Estimado();
+                update_Restante();
+
+                dialog.dismiss();
+            }
+        });
     }
 
     private void setUp_Presupuesto() {
