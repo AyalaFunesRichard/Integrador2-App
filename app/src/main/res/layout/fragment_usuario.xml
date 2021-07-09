@@ -11,7 +11,6 @@
         style="@style/Text_MainTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-
         android:layout_marginTop="8dp"
         android:letterSpacing="0.1"
         android:text="null"

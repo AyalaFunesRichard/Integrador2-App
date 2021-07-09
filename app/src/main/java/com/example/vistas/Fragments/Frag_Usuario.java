@@ -172,32 +172,25 @@ public class Frag_Usuario extends Fragment implements View.OnClickListener {
 
     public void alertDialog_EditName() {
 
-        AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
-        builder.setTitle("Cambiar nombre familiar").setMessage("Ingrese el nuevo nombre");
+        LayoutInflater inflater = LayoutInflater.from(getContext());
+        View view = inflater.inflate(R.layout.alert_dialog__update_name, null);
 
-        final EditText txtInput = new EditText(getContext());
-        txtInput.setInputType(InputType.TYPE_CLASS_TEXT);
-        builder.setView(txtInput);
+        TextView lblQuestion = view.findViewById(R.id.lblQuestion);
+        lblQuestion.setText("Ingrese el nuevo nombre");
 
-        builder.setPositiveButton(getString(R.string.dialog_ans_confirm), new DialogInterface.OnClickListener() {
+        Button btnConfirm = view.findViewById(R.id.btnRegister);
+        Button btnExit = view.findViewById(R.id.btnExit);
+        TextView txtName = view.findViewById(R.id.txtNombre);
+
+
+        AlertDialog alertDialog = new AlertDialog.Builder(getActivity())
+                .setView(view)
+                .create();
+
+        btnConfirm.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(DialogInterface dialog, int which) {
-            }
-        });
-        builder.setNegativeButton(getString(R.string.dialog_ans_cancel), new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                dialog.cancel();
-            }
-        });
-
-        final AlertDialog dialog = builder.create();
-        dialog.show();
-
-        dialog.getButton(AlertDialog.BUTTON_POSITIVE).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String newNombre = cm.validate_NombreUsuario(txtInput.getText().toString(), true);
+            public void onClick(View view) {
+                String newNombre = cm.validate_NombreUsuario(txtName.getText().toString(), true);
                 if(newNombre == null) return;
 
                 Usuario newUsuario = MainActivity.usuario;
@@ -206,9 +199,21 @@ public class Frag_Usuario extends Fragment implements View.OnClickListener {
 
                 new UsuarioDAO(getContext()).update_NombreFamiliar_where_IdUsuario(newUsuario);
 
-                dialog.dismiss();
+                setUp_Labels();
+
+                ((MainActivity) getActivity()).setUp_familyName();
+
+                alertDialog.dismiss();
             }
         });
+        btnExit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                alertDialog.cancel();
+            }
+        });
+
+        alertDialog.show();
     }
 
     // * View.OnClickListener ->

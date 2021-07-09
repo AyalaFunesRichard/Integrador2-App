@@ -76,9 +76,7 @@ public class RVA__ItemOption extends RecyclerView.Adapter<RVA__ItemOption.MyHold
 //            Toast.makeText(context, "No hay registros realizados", Toast.LENGTH_LONG).show();
 //        }
 
-        // TODO TODO TODO
-        // TODO      TODO
-        // TODO TODO TODO
+        // TODO
         // * Activar un lbl que diga que aun no hay productos/listas registradas
         //
 

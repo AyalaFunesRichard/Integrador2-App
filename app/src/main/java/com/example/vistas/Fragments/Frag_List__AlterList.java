@@ -504,10 +504,30 @@ public class Frag_List__AlterList extends Fragment implements Code_Error, Inter_
 
         ArrayList<Producto> lstRspt = new ArrayList<>();
 
+        // First Filter --> Productos that match with the search string
         List<Producto> auxLst = lstSearched.stream()
                 .filter(i -> i.getNombre().toLowerCase().contains(searchString.toLowerCase()))
                 .collect(Collectors.toList());
 
+        // Second Filter --> when the Producto is already listed
+        boolean isAlreadyListed;
+        String idAux, idListed;
+        for (int i = 0; i < auxLst.size(); i++) {
+
+            isAlreadyListed = false;
+            idAux = auxLst.get(i).getIdProducto();
+            for (int j = 0; j < lista.getLstProductos().size(); j++) {
+                idListed = lista.getLstProductos().get(j).getIdProducto();
+
+                if (idAux.equals(idListed)) {
+                    isAlreadyListed = true;
+                    break;
+                }
+            }
+
+            if (isAlreadyListed)
+                auxLst.remove(i);
+        }
         lstRspt.clear();
         lstRspt.addAll(auxLst);
 

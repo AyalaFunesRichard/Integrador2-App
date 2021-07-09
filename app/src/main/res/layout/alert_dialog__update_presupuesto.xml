@@ -10,15 +10,15 @@
         android:layout_width="250dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="32dp"
         android:layout_marginEnd="16dp"
         android:backgroundTint="@color/colorPrimaryLight"
-        android:ems="10"
         android:digits="@string/digit_number"
+        android:ems="10"
         android:inputType="number|numberDecimal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView19" />
+        app:layout_constraintTop_toBottomOf="@+id/textView17" />
 
     <TextView
         android:id="@+id/textView17"
@@ -28,22 +28,10 @@
         android:layout_marginTop="48dp"
         android:layout_marginEnd="16dp"
         android:gravity="center_horizontal"
-        android:text="Debe ingresar el presupuesto de este mes para continuar"
+        android:text="Ingrese el nuevo monto para este mes."
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/textView19"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="16dp"
-        android:text="(Puedes ingresar 0 y despues cambiarlo)"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView17" />
 
     <Button
         android:id="@+id/btnExit"
@@ -52,11 +40,15 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="32dp"
+        android:layout_marginEnd="24dp"
         android:layout_marginBottom="48dp"
         android:background="#fff"
+        android:paddingLeft="8sp"
+        android:paddingRight="8sp"
         android:stateListAnimator="@null"
-        android:text="Salir"
+        android:text="Cancelar"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/btnRegister"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txPresupusto" />
 
@@ -69,8 +61,10 @@
         android:layout_marginEnd="16dp"
         android:layout_marginBottom="48dp"
         android:background="#fff"
+        android:paddingLeft="16sp"
+        android:paddingRight="16sp"
         android:stateListAnimator="@null"
-        android:text="Registrar"
+        android:text="Actualizar"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txPresupusto" />

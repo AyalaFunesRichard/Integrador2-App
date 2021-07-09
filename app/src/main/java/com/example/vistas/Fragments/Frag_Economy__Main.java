@@ -7,6 +7,7 @@ import android.text.InputType;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;
@@ -92,34 +93,25 @@ public class Frag_Economy__Main extends Fragment {
     }
 
     private void showDialog_edit() {
-        AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
-        builder.setTitle("Modificar presupuesto").setMessage("Ingrese el nuevo presupuesto para este mes");
+        LayoutInflater inflater = LayoutInflater.from(getContext());
+        View view = inflater.inflate(R.layout.alert_dialog__update_presupuesto, null);
 
-        final EditText txtInput = new EditText(getContext());
-        txtInput.setInputType(InputType.TYPE_NUMBER_FLAG_DECIMAL);
-        builder.setView(txtInput);
+        Button btnConfirm = view.findViewById(R.id.btnRegister);
+        Button btnExit = view.findViewById(R.id.btnExit);
+        TextView txtPresupuesto = view.findViewById(R.id.txPresupusto);
 
-        builder.setPositiveButton(getString(R.string.dialog_ans_confirm), new DialogInterface.OnClickListener() {
+        AlertDialog alertDialog = new AlertDialog.Builder(getActivity())
+                .setView(view)
+                .create();
+
+        alertDialog.show();
+
+        btnConfirm.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(DialogInterface dialog, int which) {
-            }
-        });
-        builder.setNegativeButton(getString(R.string.dialog_ans_cancel), new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                dialog.cancel();
-            }
-        });
+            public void onClick(View view) {
+                CommonMethods cm = new CommonMethods(getContext());
 
-        final AlertDialog dialog = builder.create();
-        dialog.show();
-
-        dialog.getButton(AlertDialog.BUTTON_POSITIVE).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                CommonMethods cm = new CommonMethods(v.getContext());
-
-                Double newPresupuesto = cm.validate_Presupuesto(txtInput.getText().toString());
+                Double newPresupuesto = cm.validate_Presupuesto(txtPresupuesto.getText().toString());
                 if(newPresupuesto == -1) return;
 
                 String fechaMoficado = cm.getTime_ForDataBase();
@@ -133,7 +125,13 @@ public class Frag_Economy__Main extends Fragment {
                 setUp_Estimado();
                 update_Restante();
 
-                dialog.dismiss();
+                alertDialog.dismiss();
+            }
+        });
+        btnExit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                alertDialog.cancel();
             }
         });
     }
@@ -189,6 +187,8 @@ public class Frag_Economy__Main extends Fragment {
         if (differnce < 0) {
             lblRestante.setTextColor(ContextCompat.getColor(getContext(), R.color.wraning));
             msg = "- " + (differnce * -1);
+        }else{
+            lblRestante.setTextColor(ContextCompat.getColor(getContext(), R.color.colorPrimary));
         }
 
         lblRestante.setText(msg);

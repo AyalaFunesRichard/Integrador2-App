@@ -52,6 +52,7 @@
             style="@style/ET_Common"
             android:layout_marginBottom="20sp"
             android:gravity="center"
+            android:digits="@string/digit_name"
             android:hint="Nombre familiar"
             android:inputType="textPersonName" />
 
@@ -60,18 +61,21 @@
             style="@style/ET_Common"
             android:layout_marginBottom="20sp"
             android:hint="Correo"
+            android:digits="@string/digit_email"
             android:inputType="textEmailAddress" />
 
         <EditText
             android:id="@+id/etSignUp_password1"
             style="@style/ET_Common"
             android:hint="Contraseña"
+            android:digits="@string/digit_pass"
             android:inputType="textPassword" />
 
         <EditText
             android:id="@+id/etSignUp_password2"
             style="@style/ET_Common"
             android:hint="Repetir contrasaeña"
+            android:digits="@string/digit_pass"
             android:inputType="textPassword" />
 
         <Button

@@ -48,6 +48,7 @@
             style="@style/ET_Common"
             android:hint="Correo"
             android:inputType="textEmailAddress"
+            android:digits="@string/digit_email"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -55,6 +56,7 @@
         <EditText
             android:id="@+id/etLogin_password"
             style="@style/ET_Common"
+            android:digits="@string/digit_pass"
             android:layout_marginTop="32dp"
             android:hint="Contraseña"
             android:password="true"
@@ -69,8 +71,9 @@
             android:text="INICIAR SESIÓN"
             android:textStyle="normal"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/etLogin_password"
-            tools:layout_editor_absoluteX="16dp" />
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/etLogin_password" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

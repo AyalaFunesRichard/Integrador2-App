@@ -73,6 +73,7 @@
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="48dp"
+        android:gravity="bottom"
         android:text="Dinero restante: S/"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/lbl_frgEconomy_Restante" />
@@ -84,6 +85,7 @@
         android:layout_height="wrap_content"
         android:layout_marginEnd="36dp"
         android:layout_marginBottom="48dp"
+        android:gravity="bottom"
         android:text="null"
         android:textColor="@color/colorPrimary"
         app:layout_constraintBottom_toBottomOf="parent"

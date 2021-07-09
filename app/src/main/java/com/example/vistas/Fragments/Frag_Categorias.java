@@ -1,25 +1,26 @@
 package com.example.vistas.Fragments;
 
 import android.app.AlertDialog;
-import android.content.DialogInterface;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.text.InputType;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.vistas.Commons.CommonMethods;
 import com.example.vistas.DAOs.CategoriaDAO;
+import com.example.vistas.DAOs.PresupuestoDAO;
 import com.example.vistas.DTOs.Categoria;
 import com.example.vistas.Commons.Code_DB;
 import com.example.vistas.Commons.Codes;
+import com.example.vistas.DTOs.Presupuesto;
 import com.example.vistas.R;
 import com.example.vistas.RV_Adapters.RVA__frgCategoria;
 
@@ -36,6 +37,8 @@ public class Frag_Categorias extends Fragment implements RVA__frgCategoria.Inter
 
     private String dialogAnswer = "";
 
+    CommonMethods cm;
+
     public Frag_Categorias() {
     }
 
@@ -49,6 +52,8 @@ public class Frag_Categorias extends Fragment implements RVA__frgCategoria.Inter
                              Bundle savedInstanceState) {
 
         View view = inflater.inflate(R.layout.fragment_categorias, container, false);
+
+        cm = new CommonMethods(getContext());
 
         btnRegister = view.findViewById(R.id.btn_fragCategoria);
         btnRegister.setOnClickListener(this);
@@ -70,53 +75,45 @@ public class Frag_Categorias extends Fragment implements RVA__frgCategoria.Inter
         recyclerView.setAdapter(rva_Categoria);
     }
 
+    String newName;
     public void alerDialog_Register() {
-        AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
-        builder.setTitle(R.string.dialog_title_inputCategoiriaName).setMessage(getString(R.string.dialog_ques_inputCategoiriaName));
+        LayoutInflater inflater = LayoutInflater.from(getContext());
+        View view = inflater.inflate(R.layout.alert_dialog__update_name, null);
 
-        final EditText input = new EditText(getContext());
-        input.setInputType(InputType.TYPE_CLASS_TEXT);
-        builder.setView(input);
+        TextView lblQuestion = view.findViewById(R.id.lblQuestion);
+        Button btnConfirm = view.findViewById(R.id.btnRegister);
+        btnConfirm.setText("Registrar");
+        Button btnExit = view.findViewById(R.id.btnExit);
+        TextView txtName = view.findViewById(R.id.txtNombre);
 
-        builder.setPositiveButton(getString(R.string.dialog_ans_confirm), new DialogInterface.OnClickListener() {
+        lblQuestion.setText("Ingrese el nombre de la categoria:");
+
+        AlertDialog alertDialog = new AlertDialog.Builder(getActivity())
+                .setView(view)
+                .create();
+
+        btnConfirm.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(DialogInterface dialog, int which) {
-            }
-        });
-        builder.setNegativeButton(getString(R.string.dialog_ans_cancel), new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                dialog.cancel();
-            }
-        });
+            public void onClick(View view) {
+                newName = txtName.getText().toString();
 
-        final AlertDialog dialog = builder.create();
-        dialog.show();
+                dialogAnswer = txtName.getText().toString();
+                String name = cm.validate_Nombre(dialogAnswer, true);
 
-        dialog.getButton(AlertDialog.BUTTON_POSITIVE).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                boolean cloaseDialog = false;
-
-                dialogAnswer = input.getText().toString().trim();
-
-                if (!dialogAnswer.isEmpty()) {
-                    if (dialogAnswer.length() < 40) {
-                        cloaseDialog = true;
-                    } else {
-                        showMessage(getString(R.string.error_txtNombre_long));
-                    }
-                } else {
-                    showMessage(getString(R.string.error_txtNombre_empty));
-                }
-
-                if (cloaseDialog) {
+                if(name != null){
                     manageRegister();
-                    dialog.dismiss();
+                    alertDialog.dismiss();
                 }
             }
         });
+        btnExit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                alertDialog.cancel();
+            }
+        });
 
+        alertDialog.show();
     }
 
     private void manageRegister() {

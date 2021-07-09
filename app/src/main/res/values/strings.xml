@@ -84,4 +84,11 @@
     <!--    -->
     <string name="dummy_button">Dummy Button</string>
     <string name="dummy_content">DUMMY\nCONTENT</string>
+
+
+    <!--    * EditText - digits-->
+    <string name="digit_email">0123456789qwertzuiopasdfghjklyxcvbnñmÑQWERTZUIOPASDFGHJKLYXCVBNM@._</string>
+    <string name="digit_pass">0123456789qwertzuiopasdfghjklyxcvbnñmÑáéíóúÁÉÍÓÚüÜQWERTZUIOPASDFGHJKLYXCVBNM@|°!"#$%/()=?¡¿´+{},.-*[];:_</string>
+    <string name="digit_name">0123456789qwertzuiopasdfghjklyxcvbnñmÑáéíóúÁÉÍÓÚüÜQWERTZUIOPASDFGHJKLYXCVBNM.-_() ,¿?¡!</string>
+    <string name="digit_number">0123456789.</string>
 </resources>

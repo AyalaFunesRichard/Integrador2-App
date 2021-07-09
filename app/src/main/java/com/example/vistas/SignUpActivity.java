@@ -101,7 +101,6 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
                         } else {
                             Log.w(null, "createUserWithEmail:failure", task.getException());
                             cm.show_toast("Error registrando usuario");
-
                         }
                     }
                 });
@@ -150,7 +149,7 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
     }
 
     private void doneActivity() {
-        Intent intent = new Intent(this, MainActivity.class);
+        Intent intent = new Intent(this, Load_Main.class);
         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
         intent.putExtra(Codes.ARG_FIREBASE_IDUSUARIO, usuario);
         startActivity(intent);

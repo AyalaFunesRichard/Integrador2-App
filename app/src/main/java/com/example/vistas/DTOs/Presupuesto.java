@@ -2,8 +2,6 @@ package com.example.vistas.DTOs;
 
 public class Presupuesto {
 
-//    idPresupuesto TEXT, fecha TEXT, monto INTEGER, estado INT, log_fecha_creado TEXT, log_fecha_modificado TEXT
-
     private String idPresupuesto;
     private String fecha;
     private double presupuesto;
