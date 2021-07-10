@@ -4,19 +4,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#fff"
     android:orientation="vertical"
     app:layout_constrainedHeight="true"
-    android:background="#fff"
     tools:context=".LoginActivity">
-
-    <!--    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"-->
-    <!--        xmlns:app="http://schemas.android.com/apk/res-auto"-->
-    <!--        xmlns:tools="http://schemas.android.com/tools"-->
-    <!--        android:id="@+id/activity_picture"-->
-    <!--        android:layout_width="match_parent"-->
-    <!--        android:layout_height="match_parent"-->
-    <!--        tools:context="com.example.tritonix.scotproyect.PictureActivity">-->
-
 
     <TextView
         android:id="@+id/lblLoadingText3"
@@ -37,43 +28,75 @@
         android:id="@+id/linearLayout2"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
+        android:layout_marginLeft="32sp"
+        android:layout_marginTop="48dp"
+        android:layout_marginRight="32sp"
         android:orientation="vertical"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView3">
 
-        <EditText
-            android:id="@+id/etLogin_username"
-            style="@style/ET_Common"
+        <!--        Edittex-->
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/txtLytUsername"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:hint="Correo"
-            android:inputType="textEmailAddress"
-            android:digits="@string/digit_email"
+            app:boxBackgroundMode="outline"
+            app:errorIconTint="@color/wraning"
+            app:errorTextColor="@color/wraning"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent">
 
-        <EditText
-            android:id="@+id/etLogin_password"
-            style="@style/ET_Common"
-            android:digits="@string/digit_pass"
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/etLogin_username"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:digits="@string/digit_email"
+                android:inputType="textEmailAddress" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/txtLytPasswrod"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:layout_marginTop="32dp"
             android:hint="Contraseña"
-            android:password="true"
+            app:boxBackgroundMode="outline"
+            app:endIconMode="password_toggle"
+            app:errorIconTint="@color/wraning"
+            app:errorTextColor="@color/wraning"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/etLogin_username" />
+            app:layout_constraintTop_toBottomOf="@+id/txtLytUsername">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/etLogin_password"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:digits="@string/digit_pass"
+                android:inputType="textPassword" />
+        </com.google.android.material.textfield.TextInputLayout>
 
         <Button
             android:id="@+id/btnLogin_signIn"
-            style="@style/Btn_Common"
-            android:layout_marginTop="72dp"
+            android:layout_marginTop="32dp"
+
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingLeft="32sp"
+            android:paddingRight="32sp"
+            android:textSize="18sp"
+
             android:text="INICIAR SESIÓN"
-            android:textStyle="normal"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/etLogin_password" />
+            app:layout_constraintTop_toBottomOf="@+id/txtLytPasswrod" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -96,13 +119,13 @@
 
         <Button
             android:id="@+id/btnLogin_signUp"
-            style="@style/Btn_Link"
+            style="@style/Widget.MaterialComponents.Button.TextButton"
             android:layout_width="wrap_content"
-            android:layout_marginTop="0sp"
-            android:capitalize="sentences"
+            android:layout_height="wrap_content"
+            android:textColor="@color/emphasis"
+            android:layout_gravity="center_horizontal"
             android:stateListAnimator="@null"
-            android:text="Crear cuenta"
-            android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
+            android:text="Crear cuenta" />
     </LinearLayout>
 
     <ImageView
@@ -115,6 +138,5 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/lblLoadingText3"
         app:srcCompat="@drawable/ic_logo" />
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>

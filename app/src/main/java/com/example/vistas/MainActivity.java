@@ -43,7 +43,7 @@ public class MainActivity extends AppCompatActivity {
     public static Usuario usuario;
     public static DataSnapshot dataSnapshot;
 
-//    android.app.FragmentTransaction transaction;
+    //    android.app.FragmentTransaction transaction;
     FragmentManager fragmentManager;
 
     DatabaseReference dbReference;
@@ -173,7 +173,6 @@ public class MainActivity extends AppCompatActivity {
 //        }
 //
 //    }
-
 
 
 //    @Override

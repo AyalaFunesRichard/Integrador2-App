@@ -33,6 +33,8 @@ import com.example.vistas.DTOs.Rela_ProductoLista;
 import com.example.vistas.DTOs.Usuario;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.material.textfield.TextInputEditText;
+import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -147,23 +149,26 @@ public class Load_Main extends AppCompatActivity implements Codes_Logs, Code_DB 
 
         // * Presupuesto must be registered ->
         if (!thisMonthIsSet) {
-            LayoutInflater inflater = LayoutInflater.from(getApplicationContext());
+            LayoutInflater inflater = LayoutInflater.from(Load_Main.this);
             View view = inflater.inflate(R.layout.alert_dialog__must_register_presupuesto, null);
 
             Button btnConfirm = view.findViewById(R.id.btnRegister);
             Button btnExit = view.findViewById(R.id.btnExit);
-            TextView txtPresupuesto = view.findViewById(R.id.txPresupusto);
+            TextInputEditText txtPresupuesto = view.findViewById(R.id.txPresupusto);
+            TextInputLayout inputLayout = view.findViewById(R.id.txtLytPresupuesto);
 
             AlertDialog alertDialog = new AlertDialog.Builder(Load_Main.this)
                     .setView(view)
                     .create();
+
+            alertDialog.show();
 
             boolean ok = false;
             btnConfirm.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     newPresupuesto = txtPresupuesto.getText().toString();
-                    double presu = cm.validate_Presupuesto(newPresupuesto);
+                    double presu = cm.validate_Presupuesto(newPresupuesto, false, inputLayout);
 
                     if (presu == -1) {
                         return;
@@ -191,7 +196,6 @@ public class Load_Main extends AppCompatActivity implements Codes_Logs, Code_DB 
                 }
             });
 
-            alertDialog.show();
         }
     }
 

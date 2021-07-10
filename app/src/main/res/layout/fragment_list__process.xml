@@ -9,7 +9,8 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:scrollbars="vertical">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/constraintLayout4"
@@ -57,19 +58,19 @@
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rv_frgListProcess__ProductsBought"
             android:layout_width="0dp"
-            android:layout_height="0dp"
+            android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_marginTop="16dp"
             android:layout_marginEnd="16dp"
-            android:layout_marginBottom="24dp"
-            app:layout_constraintBottom_toTopOf="@+id/textView11"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/chkBx_frgListProcess_checkAll" />
 
         <Button
             android:id="@+id/btn_frgListProcess__register"
-            style="@style/Btn_forBasicOptions"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="18sp"
             android:layout_marginEnd="24dp"
             android:layout_marginBottom="24dp"
             android:paddingLeft="28dp"
@@ -80,13 +81,19 @@
 
         <Button
             android:id="@+id/btn_frgListProcess__cancel"
-            style="@style/Btn_forBasicOptions"
             android:layout_marginStart="24dp"
             android:layout_marginLeft="24dp"
             android:layout_marginBottom="24dp"
+            style="@style/Widget.MaterialComponents.Button.TextButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/emphasis"
+            android:layout_gravity="center_horizontal"
+            android:stateListAnimator="@null"
             android:text="CANCELAR"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
+
 
         <TextView
             android:id="@+id/textView11"
@@ -95,22 +102,29 @@
             android:layout_marginStart="24dp"
             android:layout_marginBottom="16dp"
             android:text="Ingresar cuanto se gastó:"
-            app:layout_constraintBottom_toTopOf="@+id/edTxt_FrgListProcess__price"
+            app:layout_constraintBottom_toTopOf="@+id/txtLytPrice"
             app:layout_constraintStart_toStartOf="parent" />
 
-        <EditText
-            android:id="@+id/edTxt_FrgListProcess__price"
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/txtLytPrice"
+
             android:layout_width="168dp"
-            android:layout_height="44dp"
-            android:digits="@string/digit_number"
+            android:layout_height="wrap_content"
             android:layout_marginStart="24dp"
             android:layout_marginBottom="48dp"
-            android:backgroundTint="@color/colorPrimaryLight"
-            android:ems="10"
             android:gravity="center"
+            android:hint="Se gastó..."
             android:inputType="number|textPersonName|numberDecimal"
+            app:boxBackgroundColor="@color/white_android"
             app:layout_constraintBottom_toTopOf="@+id/btn_frgListProcess__cancel"
-            app:layout_constraintStart_toStartOf="parent" />
+            app:layout_constraintStart_toStartOf="parent">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/edTxt_FrgListProcess__price"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:digits="@string/digit_number" />
+        </com.google.android.material.textfield.TextInputLayout>
 
         <CheckBox
             android:id="@+id/chkBx_frgListProcess_checkAll"

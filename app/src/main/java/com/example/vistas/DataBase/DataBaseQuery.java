@@ -24,40 +24,40 @@ public class DataBaseQuery implements Code_DB {
         dbConnection.close();
     }
 
-    public void deleteAll_tablesData (){
+    public void deleteAll_tablesData() {
         startConnection();
 
-        dbConnection.execSQL("delete from "+ TABLE_PRODUCTO);
+        dbConnection.execSQL("delete from " + TABLE_PRODUCTO);
         //
-        dbConnection.execSQL("delete from "+ TABLE_CATEGORIA);
+        dbConnection.execSQL("delete from " + TABLE_CATEGORIA);
         //
-        dbConnection.execSQL("delete from "+ TABLE_LISTA);
+        dbConnection.execSQL("delete from " + TABLE_LISTA);
         //
-        dbConnection.execSQL("delete from "+ TABLE_PRESUPUESTO);
+        dbConnection.execSQL("delete from " + TABLE_PRESUPUESTO);
         //
-        dbConnection.execSQL("delete from "+ TABLE_PRODUCTO_CATEGORIA);
+        dbConnection.execSQL("delete from " + TABLE_PRODUCTO_CATEGORIA);
         //
-        dbConnection.execSQL("delete from "+ TABLE_PRODUCTO_LISTA);
+        dbConnection.execSQL("delete from " + TABLE_PRODUCTO_LISTA);
         //
-        dbConnection.execSQL("delete from "+ TABLE_USUARIO);
+        dbConnection.execSQL("delete from " + TABLE_USUARIO);
 
         closeConnection();
     }
 
-    public void deleteAll_butNotUsuario (){
+    public void deleteAll_butNotUsuario() {
         startConnection();
 
-        dbConnection.execSQL("delete from "+ TABLE_PRODUCTO);
+        dbConnection.execSQL("delete from " + TABLE_PRODUCTO);
         //
-        dbConnection.execSQL("delete from "+ TABLE_CATEGORIA);
+        dbConnection.execSQL("delete from " + TABLE_CATEGORIA);
         //
-        dbConnection.execSQL("delete from "+ TABLE_LISTA);
+        dbConnection.execSQL("delete from " + TABLE_LISTA);
         //
-        dbConnection.execSQL("delete from "+ TABLE_PRESUPUESTO);
+        dbConnection.execSQL("delete from " + TABLE_PRESUPUESTO);
         //
-        dbConnection.execSQL("delete from "+ TABLE_PRODUCTO_CATEGORIA);
+        dbConnection.execSQL("delete from " + TABLE_PRODUCTO_CATEGORIA);
         //
-        dbConnection.execSQL("delete from "+ TABLE_PRODUCTO_LISTA);
+        dbConnection.execSQL("delete from " + TABLE_PRODUCTO_LISTA);
 
         closeConnection();
     }

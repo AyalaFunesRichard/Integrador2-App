@@ -17,6 +17,7 @@ import com.example.vistas.Commons.CommonMethods;
 import com.example.vistas.DTOs.Usuario;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.FirebaseError;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
@@ -32,6 +33,7 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
 
     EditText txtNombre, txtCorreo, txtContrasenia1, txtContrasenia2;
     Button btnRegister, btnCancel;
+    TextInputLayout inputLayoutName, inputLayoutEmail, inputLayoutPass1, inputLayoutPass2;
 
     FirebaseAuth mAuth;
 
@@ -58,6 +60,12 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
         txtContrasenia1 = findViewById(R.id.etSignUp_password1);
         txtContrasenia2 = findViewById(R.id.etSignUp_password2);
 
+        inputLayoutName = findViewById(R.id.txtLytUsername);
+        inputLayoutEmail= findViewById(R.id.txtLytEmail);
+        inputLayoutPass1 = findViewById(R.id.txtLytPassword1);
+        inputLayoutPass2 = findViewById(R.id.txtLytPassword2);
+
+
         btnRegister = findViewById(R.id.btnSignUp_signUp);
         btnRegister.setOnClickListener(this);
 
@@ -75,17 +83,17 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
     //
     private void manage_SignUp() {
 
-        correo = cm.validate_EmailUsuario(txtCorreo.getText().toString(), true);
+        correo = cm.validate_EmailUsuario(txtCorreo.getText().toString(), false, inputLayoutEmail);
         if (correo == null) return;
 
-        password1 = cm.validate_ContraseniaUsuario(txtContrasenia1.getText().toString(), true);
-        String password2 = cm.validate_ContraseniaUsuario(txtContrasenia1.getText().toString(), true);
+        password1 = cm.validate_ContraseniaUsuario(txtContrasenia1.getText().toString(), false, inputLayoutPass1);
+        String password2 = cm.validate_ContraseniaUsuario(txtContrasenia1.getText().toString(), false, inputLayoutPass2);
         if (password1 == null || password2 == null) return;
         if (!password1.equals(password2)) {
             cm.show_toast("Contraseñas deben ser iguales.");
             return;
         }
-        nombre = cm.validate_NombreUsuario(txtNombre.getText().toString(), true);
+        nombre = cm.validate_NombreUsuario(txtNombre.getText().toString(), false, inputLayoutName);
         if (nombre == null) return;
 
         // create in Authentication server
@@ -120,7 +128,7 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
 
         FirebaseDatabase rootNode;
         rootNode = FirebaseDatabase.getInstance();
-        dbReference = rootNode.getReference( "Usuario");
+        dbReference = rootNode.getReference("Usuario");
         dbReference.child(idUsuario).setValue(usuario, new DatabaseReference.CompletionListener() {
             @Override
             public void onComplete(@Nullable DatabaseError error, @NonNull DatabaseReference ref) {

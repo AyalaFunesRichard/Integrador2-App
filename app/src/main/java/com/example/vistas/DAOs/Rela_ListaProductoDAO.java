@@ -84,7 +84,7 @@ public class Rela_ListaProductoDAO implements Code_DB {
     public int insert(Rela_ProductoLista rela, boolean justLocally) {
 
         String id;
-        if(!justLocally){
+        if (!justLocally) {
             reference = FirebaseDatabase.getInstance().getReference(TABLE_USUARIO).child(idUsuario).child(TABLE_PRODUCTO_LISTA);
 
             id = String.valueOf(System.currentTimeMillis());
@@ -141,7 +141,7 @@ public class Rela_ListaProductoDAO implements Code_DB {
         startConnection();
 
         Cursor cursor = null;
-        cursor = dbConnection.rawQuery(queryString, null );
+        cursor = dbConnection.rawQuery(queryString, null);
 
         while (cursor.moveToNext()) {
 //            Rela_ProductoCategoria listaAux = new Rela_ProductoCategoria(cursor.getString(0), cursor.getString(1), cursor.getString(2));
@@ -158,7 +158,6 @@ public class Rela_ListaProductoDAO implements Code_DB {
 
         return rspt;
     }
-
 
 
 }

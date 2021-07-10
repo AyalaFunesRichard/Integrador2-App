@@ -26,6 +26,7 @@ import com.example.vistas.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.navigation.NavigationView;
+import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.auth.AuthCredential;
 import com.google.firebase.auth.EmailAuthProvider;
 import com.google.firebase.auth.FirebaseAuth;
@@ -99,6 +100,10 @@ public class Frag_Usuario extends Fragment implements View.OnClickListener {
         TextView txtPass2 = view.findViewById(R.id.etPassword2);
         TextView txtOldPass = view.findViewById(R.id.etOldPassword);
         TextView txtEmail = view.findViewById(R.id.etEmail);
+        TextInputLayout inputLayoutEmail = view.findViewById(R.id.txtLytEmail);
+        TextInputLayout inputLayoutOldPass = view.findViewById(R.id.txtLytOldPass);
+        TextInputLayout inputLayoutPass1 = view.findViewById(R.id.txtLytPassword2);
+        TextInputLayout inputLayoutPass2 = view.findViewById(R.id.txtLytPassword2);
 
         AlertDialog alertDialog = new AlertDialog.Builder(getContext())
                 .setView(view)
@@ -109,19 +114,19 @@ public class Frag_Usuario extends Fragment implements View.OnClickListener {
             public void onClick(View view) {
 
                 String email = txtEmail.getText().toString();
-                email = cm.validate_EmailUsuario(email, true);
+                email = cm.validate_EmailUsuario(email, false, inputLayoutEmail);
                 if (email == null) return;
 
                 String oldPass = txtOldPass.getText().toString();
-                oldPass = cm.validate_ContraseniaUsuario(oldPass, true);
+                oldPass = cm.validate_ContraseniaUsuario(oldPass, false, inputLayoutOldPass);
                 if (oldPass == null) return;
 
                 String pass1 = txtPass1.getText().toString();
-                pass1 = cm.validate_ContraseniaUsuario(pass1, true);
+                pass1 = cm.validate_ContraseniaUsuario(pass1, false, inputLayoutPass1);
                 if (pass1 == null) return;
 
                 String pass2 = txtPass2.getText().toString();
-                pass2 = cm.validate_ContraseniaUsuario(pass2, true);
+                pass2 = cm.validate_ContraseniaUsuario(pass2, false, inputLayoutPass2);
                 if (pass2 == null) return;
 
                 if (!pass1.equals(pass2)) {
@@ -181,6 +186,7 @@ public class Frag_Usuario extends Fragment implements View.OnClickListener {
         Button btnConfirm = view.findViewById(R.id.btnRegister);
         Button btnExit = view.findViewById(R.id.btnExit);
         TextView txtName = view.findViewById(R.id.txtNombre);
+        TextInputLayout inputLayout = view.findViewById(R.id.txtLytNombre);
 
 
         AlertDialog alertDialog = new AlertDialog.Builder(getActivity())
@@ -190,8 +196,8 @@ public class Frag_Usuario extends Fragment implements View.OnClickListener {
         btnConfirm.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String newNombre = cm.validate_NombreUsuario(txtName.getText().toString(), true);
-                if(newNombre == null) return;
+                String newNombre = cm.validate_NombreUsuario(txtName.getText().toString(), false, inputLayout);
+                if (newNombre == null) return;
 
                 Usuario newUsuario = MainActivity.usuario;
                 newUsuario.setNombreFamiliar(newNombre);

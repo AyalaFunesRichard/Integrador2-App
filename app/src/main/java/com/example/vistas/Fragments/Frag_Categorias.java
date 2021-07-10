@@ -23,6 +23,7 @@ import com.example.vistas.Commons.Codes;
 import com.example.vistas.DTOs.Presupuesto;
 import com.example.vistas.R;
 import com.example.vistas.RV_Adapters.RVA__frgCategoria;
+import com.google.android.material.textfield.TextInputLayout;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -76,6 +77,7 @@ public class Frag_Categorias extends Fragment implements RVA__frgCategoria.Inter
     }
 
     String newName;
+
     public void alerDialog_Register() {
         LayoutInflater inflater = LayoutInflater.from(getContext());
         View view = inflater.inflate(R.layout.alert_dialog__update_name, null);
@@ -84,6 +86,7 @@ public class Frag_Categorias extends Fragment implements RVA__frgCategoria.Inter
         Button btnConfirm = view.findViewById(R.id.btnRegister);
         btnConfirm.setText("Registrar");
         Button btnExit = view.findViewById(R.id.btnExit);
+        TextInputLayout inputLayout = view.findViewById(R.id.txtLytNombre);
         TextView txtName = view.findViewById(R.id.txtNombre);
 
         lblQuestion.setText("Ingrese el nombre de la categoria:");
@@ -98,9 +101,9 @@ public class Frag_Categorias extends Fragment implements RVA__frgCategoria.Inter
                 newName = txtName.getText().toString();
 
                 dialogAnswer = txtName.getText().toString();
-                String name = cm.validate_Nombre(dialogAnswer, true);
+                String name = cm.validate_Nombre(dialogAnswer, false, inputLayout);
 
-                if(name != null){
+                if (name != null) {
                     manageRegister();
                     alertDialog.dismiss();
                 }

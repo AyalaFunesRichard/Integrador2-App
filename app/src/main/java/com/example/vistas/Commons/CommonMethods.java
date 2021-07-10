@@ -6,6 +6,7 @@ import android.util.Patterns;
 import android.widget.Toast;
 
 import com.example.vistas.R;
+import com.google.android.material.textfield.TextInputLayout;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -32,7 +33,7 @@ public class CommonMethods implements Codes_Logs {
 //    public final String PATTERN_NAME = "^[a-zA-ZÀ-ÿ\\u00f1\\u00d1]+(\\s*[a-z A-ZÀ-ÿ\\u00f1\\u00d1._-]*)*[a-zA-ZÀ-ÿ\\u00f1\\u00d1]+$";
 //    public final String PATTERN_NAME = "[A-Za-zñÑ][a-z]+";
 
-//    public final String PATTERN_NAME = "[a-zA-Z0-9ñÑ ]{2,30}$";
+    //    public final String PATTERN_NAME = "[a-zA-Z0-9ñÑ ]{2,30}$";
     public final String PATTERN_EMAIL = "^[\\w!#$%&’*+/=?`{|}~^-]+(?:\\.[\\w!#$%&’*+/=?`{|}~^-]+)*@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,6}$";
 
     private Context context;
@@ -70,7 +71,7 @@ public class CommonMethods implements Codes_Logs {
     }
 
     // * Validations ->
-    public String validate_NombreUsuario(String text, boolean alertError) {
+    public String validate_NombreUsuario(String text, boolean alertError, TextInputLayout inputLayout) {
 
         String rspt = text.trim();
         int length = rspt.length();
@@ -99,35 +100,43 @@ public class CommonMethods implements Codes_Logs {
         return rspt;
     }
 
-    public String validate_EmailUsuario(String text, boolean alertError) {
+    public String validate_EmailUsuario(String text, boolean alertError, TextInputLayout inputLayout) {
         String rspt = text.trim();
         int length = rspt.length();
 
         if (length == 0) {
             if (alertError) show_toast(context.getString(R.string.error_txtCorreo_empty));
+            if (inputLayout != null)
+                inputLayout.setError(context.getString(R.string.error_txtCorreo_empty));
             return null;
         }
 
         if (length < USUARIO_CORREO_MIN) {
             if (alertError) show_toast(context.getString(R.string.error_txtCorreo_short));
+            if (inputLayout != null)
+                inputLayout.setError(context.getString(R.string.error_txtCorreo_short));
             return null;
         }
 
         if (length > USUARIO_CORREO_MAX) {
             if (alertError) show_toast(context.getString(R.string.error_txtCorreo_long));
+            if (inputLayout != null)
+                inputLayout.setError(context.getString(R.string.error_txtCorreo_long));
             return null;
         }
 
         boolean patternOk = (Pattern.compile(PATTERN_EMAIL).matcher(rspt).matches());
         if (!patternOk) {
             if (alertError) show_toast("Correo no valido.");
+            if (inputLayout != null) inputLayout.setError("Correo no valido.");
             return null;
         }
 
+        inputLayout.setError(null);
         return rspt;
     }
 
-    public String validate_ContraseniaUsuario(String text, boolean alertError) {
+    public String validate_ContraseniaUsuario(String text, boolean alertError, TextInputLayout inputLayout) {
         String rspt = text.trim();
         int length = rspt.length();
 
@@ -149,7 +158,7 @@ public class CommonMethods implements Codes_Logs {
         return rspt;
     }
 
-    public double validate_Presupuesto(String newPresupuesto) {
+    public double validate_Presupuesto(String newPresupuesto, boolean alertError, TextInputLayout inputLayout) {
 
         double rspt = -1;
 
@@ -157,32 +166,39 @@ public class CommonMethods implements Codes_Logs {
             newPresupuesto = newPresupuesto.trim();
 
             if (newPresupuesto.length() == 0) {
-                show_toast("Debe completar el campo presupuesto");
+                if (alertError) show_toast("Debe completar el campo presupuesto");
+                if (inputLayout != null)
+                    inputLayout.setError("Debe completar el campo presupuesto");
                 return -1;
             }
 
             if (newPresupuesto.length() > 6) {
-                show_toast("Debe ingresar una cantidad menor a 6 digitos");
+                if (alertError) show_toast("Debe ingresar una cantidad menor a 6 digitos");
+                if (inputLayout != null)
+                    inputLayout.setError("Debe ingresar una cantidad menor a 6 digitos");
                 return -1;
             }
 
             rspt = Double.parseDouble(newPresupuesto);
 
             if (rspt < 0) {
-                show_toast("Solo números positivos o 0");
+                if (alertError) show_toast("Solo números positivos o 0");
+                if (inputLayout != null) inputLayout.setError("Solo números positivos o 0");
                 return -1;
             }
 
         } catch (Exception ex) {
             ex.printStackTrace();
 
-            show_toast("Debe ingresar numeros enteros o decimales");
+            if (alertError) show_toast("Debe ingresar numeros enteros o decimales");
+            if (inputLayout != null)
+                inputLayout.setError("Debe ingresar numeros enteros o decimales");
         }
 
         return rspt;
     }
 
-    public String validate_Nombre(String text, boolean alertError)  {
+    public String validate_Nombre(String text, boolean alertError, TextInputLayout inputLayout) {
 
         String rspt = text.trim();
         int length = rspt.length();

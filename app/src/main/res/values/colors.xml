@@ -14,6 +14,8 @@
 
     <color name="grey_lighter">#dfe4ea</color>
 
+    <color name="white_android">#FAFAFA</color>
+
     <color name="wraning">#FF0000</color>
     <color name="neutral">#FFD8A6</color>
     <color name="emphasis">#1589B3</color>

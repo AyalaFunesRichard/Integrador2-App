@@ -37,6 +37,7 @@ public class Frag_Product__Main extends Fragment implements RVA__ItemOption.Inte
     public Frag_Product__Main() {
         // Required empty public constructor
     }
+
     View view;
 
     @Override
@@ -111,20 +112,11 @@ public class Frag_Product__Main extends Fragment implements RVA__ItemOption.Inte
 //                .commit();
 
 
-
-
-
-
 //        this.changefragment(nextFragment, false);
 
 
         FragmentTransaction transaction = getFragmentManager().beginTransaction();
         transaction.replace(R.id.main_fragment_container, nextFragment).addToBackStack("tag").commit();
-
-
-
-
-
 
 
 //        Fragment fragment = new MyFragment();
@@ -136,8 +128,6 @@ public class Frag_Product__Main extends Fragment implements RVA__ItemOption.Inte
 //                .commit();
 //
 //        fragmentManager.executePendingTransactions();
-
-
 
 
     }
@@ -160,7 +150,6 @@ public class Frag_Product__Main extends Fragment implements RVA__ItemOption.Inte
         /*Keep this empty, its just for the Interface from RVA__ItemOption*/
 
     }
-
 
 
 }

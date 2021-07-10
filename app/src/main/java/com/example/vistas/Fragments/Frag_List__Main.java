@@ -97,12 +97,13 @@ public class Frag_List__Main extends Fragment implements RVA__ItemOption.Inter_R
         FragmentTransaction transaction = getFragmentManager().beginTransaction();
         transaction.replace(R.id.main_fragment_container, nextFragment).addToBackStack("main").commit();
     }
+
     @Override
     public void openFragment(Lista lista) {
         Frag_List__AlterList nextFragment = new Frag_List__AlterList();
 
         openFragment(nextFragment, Codes.FRAGMENT_FOR_EDIT, lista);
-        
+
     }
 
     // Ignore ->
@@ -110,6 +111,7 @@ public class Frag_List__Main extends Fragment implements RVA__ItemOption.Inter_R
     public void removeProduct(Producto producto) {
         /*Keep this empty, its just for the Interface from RVA__ItemOption*/
     }
+
     @Override
     public void openFragment(Producto producto) {
         /*Keep this empty, its just for the Interface from RVA__ItemOption*/

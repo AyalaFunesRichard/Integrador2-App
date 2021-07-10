@@ -33,24 +33,29 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
-            <EditText
-                android:id="@+id/eTxt_FragListAlter_name"
-                style="@style/ETFor_RecyView_Item"
-                android:layout_width="0dp"
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/txtLytName"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_height="wrap_content"
+                android:layout_width="0dp"
                 android:layout_marginStart="16dp"
                 android:layout_marginEnd="16dp"
                 android:backgroundTint="@color/colorPrimaryLight"
-                android:drawableTint="#FF0000"
-                android:digits="@string/digit_name"
-                android:foregroundTint="#00FF0D"
                 android:gravity="left"
-                android:hint="Comprar en Tottus"
-                android:textColorLink="@color/neutral"
+                android:hint="Título de la lista"
+                app:errorIconTint="@color/wraning"
+                app:errorTextColor="@color/wraning"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/textView6"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/eTxt_FragListAlter_name"
+                    android:layout_height="wrap_content"
+                    android:layout_width="match_parent"
+                    android:digits="@string/digit_name"/>
+            </com.google.android.material.textfield.TextInputLayout>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -114,25 +119,27 @@
 
             <Button
                 android:id="@+id/btn_FrgAltrList__create_confirm"
-                style="@style/Btn_forBasicOptions"
                 android:layout_marginEnd="24dp"
-                android:background="@drawable/style_button_common"
-                android:paddingLeft="28dp"
-                android:paddingRight="28dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingLeft="32sp"
+                android:paddingRight="32sp"
+                android:textSize="18sp"
                 android:text="REGISTRAR"
-                android:textColor="@color/black"
-                android:visibility="gone"
+                android:visibility="visible"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent" />
 
             <Button
                 android:id="@+id/btn_FrgAltrList__create_cancel"
-                style="@style/Btn_forBasicOptions"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="18sp"
                 android:layout_marginStart="24dp"
-                android:layout_marginLeft="24dp"
                 android:text="CANCELAR"
-                android:textColor="@color/black"
-                android:visibility="gone"
+                android:visibility="visible"
+                style="@style/Widget.MaterialComponents.Button.TextButton"
+                android:textColor="@color/emphasis"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent" />
 

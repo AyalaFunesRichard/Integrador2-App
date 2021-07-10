@@ -78,7 +78,7 @@ public class ProductoDAO implements Code_DB {
     public int insert(Producto producto, boolean justLocally) {
 
         String newIdProducto;
-        if(!justLocally){
+        if (!justLocally) {
             reference = FirebaseDatabase.getInstance().getReference("Usuario").child(idUsuario).child(TABLE_PRODUCTO);
 
             newIdProducto = String.valueOf(System.currentTimeMillis());

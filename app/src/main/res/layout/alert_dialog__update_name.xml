@@ -18,27 +18,37 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <EditText
-        android:id="@+id/txtNombre"
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/txtLytNombre"
         android:layout_width="250dp"
         android:layout_height="wrap_content"
+        android:hint="Presupuesto"
+        app:errorIconTint="@color/wraning"
+        app:errorTextColor="@color/wraning"
         android:layout_marginStart="16dp"
         android:layout_marginTop="32dp"
         android:layout_marginEnd="16dp"
-        android:backgroundTint="@color/colorPrimaryLight"
-        android:digits="@string/digit_name"
-        android:ems="10"
-        android:inputType="text"
+        app:boxBackgroundColor="#FFF"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/lblQuestion" />
+        app:layout_constraintTop_toBottomOf="@+id/lblQuestion" >
 
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/txtNombre"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:digits="@string/digit_name"
+            android:inputType="text"/>
+    </com.google.android.material.textfield.TextInputLayout>
 
     <Button
         android:id="@+id/btnExit"
-        style="@style/Btn_Link"
+        style="@style/Widget.MaterialComponents.Button.TextButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
         android:layout_marginStart="8dp"
         android:layout_marginTop="32dp"
         android:layout_marginBottom="48dp"
@@ -47,16 +57,18 @@
         android:paddingRight="8sp"
         android:stateListAnimator="@null"
         android:text="Cancelar"
+        android:textColor="@color/emphasis"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/txtNombre"
-        app:layout_constraintTop_toBottomOf="@+id/txtNombre"
+        app:layout_constraintStart_toStartOf="@+id/txtLytNombre"
+        app:layout_constraintTop_toBottomOf="@+id/txtLytNombre"
         app:layout_constraintVertical_bias="0.0" />
 
     <Button
         android:id="@+id/btnRegister"
-        style="@style/Btn_Link"
+        style="@style/Widget.MaterialComponents.Button.TextButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
         android:layout_marginTop="32dp"
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="48dp"
@@ -66,6 +78,6 @@
         android:stateListAnimator="@null"
         android:text="Actualizar"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/txtNombre"
-        app:layout_constraintTop_toBottomOf="@+id/txtNombre" />
+        app:layout_constraintEnd_toEndOf="@+id/txtLytNombre"
+        app:layout_constraintTop_toBottomOf="@+id/txtLytNombre" />
 </androidx.constraintlayout.widget.ConstraintLayout>

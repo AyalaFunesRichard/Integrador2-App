@@ -19,6 +19,7 @@ import com.example.vistas.Commons.Code_DB;
 import com.example.vistas.Commons.Code_Error;
 import com.example.vistas.Commons.Codes;
 import com.example.vistas.R;
+import com.google.android.material.textfield.TextInputLayout;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -88,6 +89,7 @@ public class RVA__frgCategoria extends RecyclerView.Adapter<RVA__frgCategoria.My
 
             this.inter_fragCategoria = inter_fragCategoria;
 
+            TextInputLayout inputLayout = itemView.findViewById(R.id.txtLytName);
             txtNombre = itemView.findViewById(R.id.etRV_itemName);
 
             iBtn_Left = itemView.findViewById(R.id.iBtn_rvItemTwoOptio_left);
@@ -151,7 +153,7 @@ public class RVA__frgCategoria extends RecyclerView.Adapter<RVA__frgCategoria.My
                 iBtn_Right.setImageResource(R.drawable.ic_button_check);
 
                 buttonStatus = BUTTONS_EDITING;
-            }else{
+            } else {
                 iBtn_Left.setImageResource(R.drawable.ic_button_delete);
                 iBtn_Right.setImageResource(R.drawable.ic_button_edit);
 
@@ -159,21 +161,22 @@ public class RVA__frgCategoria extends RecyclerView.Adapter<RVA__frgCategoria.My
             }
         }
 
-        private void alter_EditText(){
-            if(buttonStatus == BUTTONS_NORMAL){
+        private void alter_EditText() {
+            if (buttonStatus == BUTTONS_NORMAL) {
                 txtNombre.setFocusable(false);
                 txtNombre.setEnabled(false);
                 txtNombre.setClickable(false);
                 txtNombre.setFocusableInTouchMode(false);
-            }else{
+            } else {
                 txtNombre.setFocusable(true);
                 txtNombre.setEnabled(true);
                 txtNombre.setClickable(true);
                 txtNombre.setFocusableInTouchMode(true);
+                txtNombre.requestFocus();
             }
         }
 
-        private void updateCategoria(View itemView){
+        private void updateCategoria(View itemView) {
 
             String nombre = getNombreProducto(itemView);
             if (nombre.equals(ERROR_EMPTY) || nombre.equals(ERROR_LONG) || nombre.equals(ERROR_REPEATED)) {
@@ -201,7 +204,7 @@ public class RVA__frgCategoria extends RecyclerView.Adapter<RVA__frgCategoria.My
         }
 
         private void deleteItem() {
-            int rspt  = new CategoriaDAO(itemView.getContext()).delete_where_idCategoria(this.categoria.getIdCategoria());
+            int rspt = new CategoriaDAO(itemView.getContext()).delete_where_idCategoria(this.categoria.getIdCategoria());
 
             String message = "null";
             if (rspt == Code_DB.SQLITE_ERROR) {

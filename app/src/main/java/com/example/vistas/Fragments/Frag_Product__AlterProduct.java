@@ -120,7 +120,7 @@ public class Frag_Product__AlterProduct extends Fragment implements Code_Error, 
 
                         categoriasOk = DB_insert_RelaProductoCategoria(newProducto.getIdProducto(), producto.getLstCategoria().get(i).getIdCategoria());
 
-                        if(!categoriasOk) return;
+                        if (!categoriasOk) return;
                     }
 
                     returnFrame();
@@ -167,7 +167,7 @@ public class Frag_Product__AlterProduct extends Fragment implements Code_Error, 
                             nombreOk = DB_update_Producto(false);
                         }
 
-                        if (isCategoriaModified ) {
+                        if (isCategoriaModified) {
 
                             String idProducto = producto.getIdProducto();
                             DB_delete_RelaProdCate(idProducto);
@@ -176,11 +176,11 @@ public class Frag_Product__AlterProduct extends Fragment implements Code_Error, 
 
                                 categoriaOk = DB_insert_RelaProductoCategoria(idProducto, producto.getLstCategoria().get(i).getIdCategoria());
 
-                                if(!categoriaOk) return;
+                                if (!categoriaOk) return;
                             }
                         }
 
-                        if(nombreOk && categoriaOk) message2 = getString(R.string.product_updated);
+                        if (nombreOk && categoriaOk) message2 = getString(R.string.product_updated);
                     }
                     Toast.makeText(getContext(), message2, Toast.LENGTH_SHORT).show();
 
@@ -412,7 +412,7 @@ public class Frag_Product__AlterProduct extends Fragment implements Code_Error, 
             message = getString(R.string.product_updated);
         }
 
-        if(showToast) Toast.makeText(getContext(), message, Toast.LENGTH_SHORT).show();
+        if (showToast) Toast.makeText(getContext(), message, Toast.LENGTH_SHORT).show();
 
         return rspt;
     }
@@ -430,7 +430,7 @@ public class Frag_Product__AlterProduct extends Fragment implements Code_Error, 
     }
 
     private void DB_insert_Producto(Producto newProducto) {
-        int code = new ProductoDAO(getContext()).insert(newProducto,false);
+        int code = new ProductoDAO(getContext()).insert(newProducto, false);
 
         String message;
         if (code == Code_DB.SQLITE_ERROR) {
@@ -487,7 +487,7 @@ public class Frag_Product__AlterProduct extends Fragment implements Code_Error, 
         }
 
         // Just for edting
-        if (fragmentFor.equals(Codes.FRAGMENT_FOR_EDIT) && rspt.equals(nombreOld))  return rspt;
+        if (fragmentFor.equals(Codes.FRAGMENT_FOR_EDIT) && rspt.equals(nombreOld)) return rspt;
 
         // for Edting and Creating
         Producto productoAux = new ProductoDAO(getContext()).select_where_nombre(rspt);

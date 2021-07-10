@@ -60,10 +60,10 @@ public class CategoriaDAO implements Code_DB {
     }
 
     // * INSERT ->
-    public int insert(Categoria categoria, boolean justLocally ) {
+    public int insert(Categoria categoria, boolean justLocally) {
 
         String id;
-        if(!justLocally){
+        if (!justLocally) {
             reference = FirebaseDatabase.getInstance().getReference(TABLE_USUARIO).child(idUsuario).child(TABLE_CATEGORIA);
 
             id = String.valueOf(System.currentTimeMillis());
@@ -100,7 +100,7 @@ public class CategoriaDAO implements Code_DB {
         cursor = dbConnection.rawQuery("SELECT * FROM " + TABLE_CATEGORIA, null);
 
         while (cursor.moveToNext()) {
-            Categoria categoriaAux = new Categoria(cursor.getString(0), cursor.getString(1), null,  cursor.getInt(2), cursor.getString(3), cursor.getString(4));
+            Categoria categoriaAux = new Categoria(cursor.getString(0), cursor.getString(1), null, cursor.getInt(2), cursor.getString(3), cursor.getString(4));
             lstRspt.add(categoriaAux);
         }
 
@@ -135,7 +135,7 @@ public class CategoriaDAO implements Code_DB {
         return lstCategoria;
     }
 
-    public Categoria select_where_nombre(String nombre){
+    public Categoria select_where_nombre(String nombre) {
 
         Categoria categoriaRspt = null;
 

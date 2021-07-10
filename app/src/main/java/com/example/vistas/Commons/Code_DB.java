@@ -3,7 +3,7 @@ package com.example.vistas.Commons;
 public interface Code_DB {
 
     // DATA BASE
-    String    DATABASE_NAME = "DB_MeFalta";
+    String DATABASE_NAME = "DB_MeFalta";
 
     // TABLEs
     String TABLE_PRODUCTO = "Producto";

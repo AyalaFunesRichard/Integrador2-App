@@ -7,12 +7,27 @@
     android:clickable="false">
 
 
-    <EditText
-        android:id="@+id/etRV_itemName"
-        style="@style/ETFor_RecyView_Item"
-        android:textColor="#000000"
-        android:digits="@string/digit_name"
-        android:textColorHint="#000000" />
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/txtLytName"
+        android:layout_width="252dp"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="16sp"
+        android:foregroundTint="#FFFFFF"
+        android:hint="Nombre"
+        app:boxBackgroundColor="#FFFFFF"
+        app:errorIconTint="@color/wraning"
+        app:errorTextColor="@color/wraning">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/etRV_itemName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:digits="@string/digit_name"
+            android:drawableTint="#2AD61E"
+            android:textColor="@drawable/edit_text_disabled_color"
+            android:ems="10"
+            android:foregroundTint="#F10909" />
+    </com.google.android.material.textfield.TextInputLayout>
 
     <ImageButton
         android:id="@+id/iBtn_rvItemTwoOptio_left"

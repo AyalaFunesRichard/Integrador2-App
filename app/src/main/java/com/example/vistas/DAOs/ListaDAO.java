@@ -68,7 +68,7 @@ public class ListaDAO implements Code_DB {
     public int insert(Lista lista, boolean justLocally) {
 
         String id;
-        if(!justLocally){
+        if (!justLocally) {
             reference = FirebaseDatabase.getInstance().getReference(TABLE_USUARIO).child(idUsuario).child(TABLE_LISTA);
 
             id = String.valueOf(System.currentTimeMillis());
@@ -98,7 +98,7 @@ public class ListaDAO implements Code_DB {
 
     // * SELECT ->
 
-    public Lista select_where_nombre(String nombre){
+    public Lista select_where_nombre(String nombre) {
 
         Lista listaRspt = null;
 
@@ -145,7 +145,7 @@ public class ListaDAO implements Code_DB {
         startConnection();
 
         Cursor cursor = null;
-        cursor = dbConnection.rawQuery(queryString, null );
+        cursor = dbConnection.rawQuery(queryString, null);
 
         while (cursor.moveToNext()) {
             Lista listaAux = new Lista(cursor.getString(0), cursor.getString(1), cursor.getDouble(2), cursor.getString(3), cursor.getInt(4), cursor.getString(5), cursor.getString(6));
@@ -167,7 +167,7 @@ public class ListaDAO implements Code_DB {
         startConnection();
 
         Cursor cursor = null;
-        cursor = dbConnection.rawQuery(queryString, null );
+        cursor = dbConnection.rawQuery(queryString, null);
 
         while (cursor.moveToNext()) {
             Lista listaAux = new Lista(cursor.getString(0), cursor.getDouble(1), cursor.getString(2));
@@ -179,7 +179,7 @@ public class ListaDAO implements Code_DB {
         return lstRspt;
     }
 
-    public  ArrayList<Lista> select_where_idProducto_estadoLista(String idProducto, int estadoLista) {
+    public ArrayList<Lista> select_where_idProducto_estadoLista(String idProducto, int estadoLista) {
 
         ArrayList<Lista> lstRspt = new ArrayList<>();
 
@@ -194,7 +194,7 @@ public class ListaDAO implements Code_DB {
         startConnection();
 
         Cursor cursor = null;
-        cursor = dbConnection.rawQuery(queryString, null );
+        cursor = dbConnection.rawQuery(queryString, null);
 
         while (cursor.moveToNext()) {
             Lista listaAux = new Lista(cursor.getString(0), cursor.getString(1));
@@ -206,7 +206,7 @@ public class ListaDAO implements Code_DB {
         return lstRspt;
     }
 
-    public  Lista select_where_nombre_estadoNoComprada(String nombre) {
+    public Lista select_where_nombre_estadoNoComprada(String nombre) {
 
         Lista listaRspt = null;
 

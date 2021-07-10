@@ -16,6 +16,7 @@ import com.example.vistas.Commons.Code_Error;
 import com.example.vistas.Commons.CommonMethods;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 
@@ -42,9 +43,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
         // Set up View's Items
         txtMail = findViewById(R.id.etLogin_username);
-//        txtMail.addTextChangedListener(watcher_email);
         txtPass = findViewById(R.id.etLogin_password);
-//        txtPass.addTextChangedListener(watcher_pass);
 
         btnCreate = findViewById(R.id.btnLogin_signUp);
         btnCreate.setOnClickListener(this);
@@ -53,6 +52,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
         cm = new CommonMethods(this);
     }
+
     private void activityDone() {
 
         Intent intent = new Intent(this, Load_Main.class);
@@ -65,10 +65,11 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.btnLogin_signIn: {
-                String email = cm.validate_EmailUsuario(txtMail.getText().toString(), true);
+
+                String email = cm.validate_EmailUsuario(txtMail.getText().toString(), false, (TextInputLayout) findViewById(R.id.txtLytUsername));
                 if (email == null) return;
 
-                String pass = cm.validate_ContraseniaUsuario(txtPass.getText().toString(), true);
+                String pass = cm.validate_ContraseniaUsuario(txtPass.getText().toString(), false, findViewById(R.id.txtLytPasswrod));
                 if (pass == null) return;
 
                 mAuth.signInWithEmailAndPassword(email, pass)
@@ -99,6 +100,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             }
         }
     }
+
     @Override
     public void onBackPressed() {
         this.finish();

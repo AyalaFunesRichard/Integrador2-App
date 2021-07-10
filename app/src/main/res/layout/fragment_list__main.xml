@@ -41,7 +41,12 @@
 
         <Button
             android:id="@+id/btn_FrgListMain_createList"
-            style="@style/Btn_Shrink"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingLeft="32sp"
+            android:paddingRight="32sp"
+            android:textSize="18sp"
+
             android:layout_marginStart="16dp"
             android:layout_marginLeft="16dp"
             android:layout_marginEnd="16dp"

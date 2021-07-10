@@ -8,17 +8,6 @@
     android:orientation="vertical"
     tools:context=".SignUpActivity">
 
-
-    <ImageView
-        android:id="@+id/imageView2"
-        android:layout_width="94dp"
-        android:layout_height="89dp"
-        android:layout_marginTop="8dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/lblLoadingText4"
-        app:srcCompat="@drawable/ic_logo" />
-
     <TextView
         android:id="@+id/lblLoadingText4"
         style="@style/Text_businessName"
@@ -34,10 +23,22 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="77dp"
+        android:layout_height="72dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/lblLoadingText4"
+        app:srcCompat="@drawable/ic_logo" />
+
     <LinearLayout
         android:id="@+id/linearLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginLeft="48sp"
+        android:layout_marginRight="48sp"
         android:layout_marginTop="24dp"
         android:layout_marginBottom="8dp"
         android:orientation="vertical"
@@ -47,49 +48,112 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView2">
 
-        <EditText
-            android:id="@+id/etSignUp_userName"
-            style="@style/ET_Common"
-            android:layout_marginBottom="20sp"
-            android:gravity="center"
-            android:digits="@string/digit_name"
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/txtLytUsername"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+
             android:hint="Nombre familiar"
-            android:inputType="textPersonName" />
+            app:boxBackgroundColor="#FFFFFF"
+            app:errorIconTint="@color/wraning"
+            app:errorTextColor="@color/wraning">
 
-        <EditText
-            android:id="@+id/etSignUp_email"
-            style="@style/ET_Common"
-            android:layout_marginBottom="20sp"
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/etSignUp_userName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8sp"
+                android:digits="@string/digit_name"
+                android:gravity="center"
+                android:inputType="textPersonName" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/txtLytEmail"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+
             android:hint="Correo"
-            android:digits="@string/digit_email"
-            android:inputType="textEmailAddress" />
+            app:boxBackgroundColor="#FFFFFF"
+            app:errorIconTint="@color/wraning"
+            app:errorTextColor="@color/wraning">
 
-        <EditText
-            android:id="@+id/etSignUp_password1"
-            style="@style/ET_Common"
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/etSignUp_email"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8sp"
+                android:digits="@string/digit_email"
+                android:gravity="center"
+                android:inputType="textEmailAddress" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/txtLytPassword1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+
             android:hint="Contraseña"
-            android:digits="@string/digit_pass"
-            android:inputType="textPassword" />
+            app:boxBackgroundColor="#FFFFFF"
+            app:errorIconTint="@color/wraning"
+            app:errorTextColor="@color/wraning">
 
-        <EditText
-            android:id="@+id/etSignUp_password2"
-            style="@style/ET_Common"
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/etSignUp_password1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8sp"
+                android:digits="@string/digit_pass"
+                android:gravity="center"
+                android:inputType="textPassword" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/txtLytPassword2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+
             android:hint="Repetir contrasaeña"
-            android:digits="@string/digit_pass"
-            android:inputType="textPassword" />
+            app:boxBackgroundColor="#FFFFFF"
+            app:errorIconTint="@color/wraning"
+            app:errorTextColor="@color/wraning">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/etSignUp_password2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:digits="@string/digit_pass"
+                android:gravity="center"
+                android:inputType="textPassword" />
+        </com.google.android.material.textfield.TextInputLayout>
 
         <Button
             android:id="@+id/btnSignUp_signUp"
-            style="@style/Btn_Common"
+
+            android:layout_marginTop="24sp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:paddingLeft="32sp"
+            android:paddingRight="32sp"
+            android:textSize="18sp"
+
             android:text="REGISTRAR CUENTA"
             android:textStyle="normal" />
     </LinearLayout>
 
     <Button
         android:id="@+id/btnSignUp_cancel"
-        style="@style/Btn_Link"
         android:layout_marginBottom="24dp"
-        android:stateListAnimator="@null"
+        style="@style/Widget.MaterialComponents.Button.TextButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
         android:text="Cancelar"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

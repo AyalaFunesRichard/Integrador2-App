@@ -28,6 +28,7 @@ import com.example.vistas.DTOs.Usuario;
 import com.example.vistas.MainActivity;
 import com.example.vistas.R;
 import com.example.vistas.RV_Adapters.RVA__Economy_TwoText;
+import com.google.android.material.textfield.TextInputLayout;
 
 import java.time.LocalDate;
 import java.time.Month;
@@ -98,6 +99,7 @@ public class Frag_Economy__Main extends Fragment {
 
         Button btnConfirm = view.findViewById(R.id.btnRegister);
         Button btnExit = view.findViewById(R.id.btnExit);
+        TextInputLayout txtLayotu = view.findViewById(R.id.txtLytPresupuesto);
         TextView txtPresupuesto = view.findViewById(R.id.txPresupusto);
 
         AlertDialog alertDialog = new AlertDialog.Builder(getActivity())
@@ -111,8 +113,8 @@ public class Frag_Economy__Main extends Fragment {
             public void onClick(View view) {
                 CommonMethods cm = new CommonMethods(getContext());
 
-                Double newPresupuesto = cm.validate_Presupuesto(txtPresupuesto.getText().toString());
-                if(newPresupuesto == -1) return;
+                Double newPresupuesto = cm.validate_Presupuesto(txtPresupuesto.getText().toString(), false, txtLayotu);
+                if (newPresupuesto == -1) return;
 
                 String fechaMoficado = cm.getTime_ForDataBase();
 
@@ -138,7 +140,7 @@ public class Frag_Economy__Main extends Fragment {
 
     private void setUp_Presupuesto() {
         this.presupuesto = new PresupuestoDAO(getContext()).select_where_thisMonth(getContext());
-        if (presupuesto == null){
+        if (presupuesto == null) {
             new CommonMethods(getContext()).show_alert("Parece que no has registrado el presupuesto de este mes...");
         }
     }
@@ -187,7 +189,7 @@ public class Frag_Economy__Main extends Fragment {
         if (differnce < 0) {
             lblRestante.setTextColor(ContextCompat.getColor(getContext(), R.color.wraning));
             msg = "- " + (differnce * -1);
-        }else{
+        } else {
             lblRestante.setTextColor(ContextCompat.getColor(getContext(), R.color.colorPrimary));
         }
 
