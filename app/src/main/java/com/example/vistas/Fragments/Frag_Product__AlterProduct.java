@@ -31,6 +31,8 @@ import com.example.vistas.Interfaces.Inter_OnBackPressed;
 import com.example.vistas.Interfaces.Inter__RVA__Item_CheckBox;
 import com.example.vistas.R;
 import com.example.vistas.RV_Adapters.RVA__CheckBox_Categoria;
+import com.google.android.material.textfield.TextInputEditText;
+import com.google.android.material.textfield.TextInputLayout;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -39,7 +41,7 @@ import java.util.Objects;
 
 public class Frag_Product__AlterProduct extends Fragment implements Code_Error, Inter__RVA__Item_CheckBox<Categoria>, Inter_OnBackPressed {
 
-    EditText txtNombre;
+    TextInputEditText txtNombre;
 
     RecyclerView recyclerView;
     RVA__CheckBox_Categoria rva_checkbox;
@@ -54,6 +56,10 @@ public class Frag_Product__AlterProduct extends Fragment implements Code_Error, 
 
     private Producto producto = new Producto("-1", "ERROR");
 
+    View v;
+
+    CommonMethods cm;
+
     public Frag_Product__AlterProduct() {
         // Required empty public constructor
     }
@@ -67,10 +73,13 @@ public class Frag_Product__AlterProduct extends Fragment implements Code_Error, 
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_product__alter_product, container, false);
+        v = view;
 
         txtNombre = view.findViewById(R.id.eText_fragAlteProd_name);
 
         recyclerView = view.findViewById(R.id.rv_frgAlterProduc_forCategoria);
+
+        cm = new CommonMethods(getContext());
 
         //
         detectThisFragment();
@@ -101,10 +110,15 @@ public class Frag_Product__AlterProduct extends Fragment implements Code_Error, 
                     break;
 
                 case R.id.btn_FrgAltrProd__register_confirm:
-                    nombre = getNombreProducto(true);
-                    if (nombre.equals(ERROR_EMPTY) || nombre.equals(ERROR_LONG) || nombre.equals(ERROR_REPEATED)) {
-                        return;
-                    }
+
+                    nombre = cm.validate_Nombre(txtNombre.getText().toString(), false, (TextInputLayout) v.findViewById(R.id.txtLytName_alterProd));
+                    if (nombre == null) return;
+
+//                    nombre = getNombreProducto(true);
+//                    if(nombre == null) return;
+//                    if (nombre.equals(ERROR_EMPTY) || nombre.equals(ERROR_LONG) || nombre.equals(ERROR_REPEATED)) {
+//                        return;
+//                    }
 
                     int estado = Codes.PRODUCTO_ESTADO_ACTIVO;
                     String fechaCreado = new SimpleDateFormat(Code_DB.DATE_FORMART).format(new Date());
@@ -142,10 +156,13 @@ public class Frag_Product__AlterProduct extends Fragment implements Code_Error, 
                 case R.id.iBtn_FrgAltrProd__edit_confirm:// * For CONFIRM EDITED product ->
 
                     // * Detect if something was modified ->
-                    nombre = getNombreProducto(true);
-                    if (nombre.equals(ERROR_EMPTY) || nombre.equals(ERROR_LONG) || nombre.equals(ERROR_REPEATED)) {
-                        return;
-                    }
+                    nombre = cm.validate_Nombre(txtNombre.getText().toString(), false, (TextInputLayout) v.findViewById(R.id.txtLytName_alterProd));
+                    if (nombre == null) return;
+
+//                    nombre = getNombreProducto(true);
+//                    if (nombre.equals(ERROR_EMPTY) || nombre.equals(ERROR_LONG) || nombre.equals(ERROR_REPEATED)) {
+//                        return;
+//                    }
                     boolean isNombreModified = !nombre.equals(nombreOld);
 
                     boolean isCategoriaModified = isCategoriaEdited();

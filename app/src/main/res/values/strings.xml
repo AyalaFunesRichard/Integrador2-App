@@ -10,7 +10,7 @@
     <string name="menu_products">Productos faltantes</string>
     <string name="menu_lists">Lista de compras</string>
     <string name="menu_economy">Presupuesto mensual</string>
-    <string name="menu_categories">Categoria</string>
+    <string name="menu_categories">Categoría</string>
 
     <!-- * Title Bars-->
     <string name="actionBarTitle_AlterProduct_create">Registrar producto</string>

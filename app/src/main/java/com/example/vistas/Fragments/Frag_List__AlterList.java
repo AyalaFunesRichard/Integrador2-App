@@ -36,6 +36,8 @@ import com.example.vistas.MainActivity;
 import com.example.vistas.R;
 import com.example.vistas.RV_Adapters.RVA__CheckBox_Producto;
 import com.example.vistas.RV_Adapters.RVA__OneItem;
+import com.google.android.material.textfield.TextInputEditText;
+import com.google.android.material.textfield.TextInputLayout;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -49,15 +51,19 @@ public class Frag_List__AlterList extends Fragment implements Code_Error, Inter_
 
     private String fragmentFor = null; // recognize this fragment
 
+    CommonMethods cm;
+
     RecyclerView rvProductos_selected;
     RecyclerView rvProductos_searched;
     RVA__CheckBox_Producto rva_checkbox;
     RVA__OneItem rva_oneItem;
 
-    private EditText txtNombre;
+    private TextInputEditText txtNombre;
     private Button btnCancel, btnConfirm;
     private ImageButton iBtnCancelEdit, iBtnConfirmEdit, iBtnDelete, iBtnListReady;
     private SearchView txtSearch;
+
+    View v;
 
     Lista lista = null;
 
@@ -81,6 +87,9 @@ public class Frag_List__AlterList extends Fragment implements Code_Error, Inter_
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_list__alter_list, container, false);
+        v = view;
+
+        cm = new CommonMethods(getContext());
 
         txtNombre = view.findViewById(R.id.eTxt_FragListAlter_name);
 
@@ -123,10 +132,9 @@ public class Frag_List__AlterList extends Fragment implements Code_Error, Inter_
                     popup_return();
                     break;
                 case R.id.btn_FrgAltrList__create_confirm:
-                    nombre = getNombreLista(true);
-                    if (nombre.equals(ERROR_EMPTY) || nombre.equals(ERROR_LONG) || nombre.equals(ERROR_REPEATED)) {
-                        return;
-                    }
+
+                    nombre = cm.validate_Nombre(txtNombre.getText().toString(), false, (TextInputLayout) v.findViewById(R.id.txtLytName));
+                    if (nombre == null) return;
 
                     double gasto = -1;
                     String fechaComprado = "";
@@ -168,9 +176,11 @@ public class Frag_List__AlterList extends Fragment implements Code_Error, Inter_
                 case R.id.iBtn_FragAlterList__edit_confirm:// * For CONFIRM EDITED list ->
 
                     // Detect if something was modified
-                    nombre = getNombreLista(true);
-                    if (nombre.equals(ERROR_EMPTY) || nombre.equals(ERROR_LONG) || nombre.equals(ERROR_REPEATED))
-                        return;
+                    nombre = cm.validate_Nombre(txtNombre.getText().toString(), false, (TextInputLayout) v.findViewById(R.id.txtLytName));
+                    if (nombre == null) return;
+//                    nombre = getNombreLista(true);
+//                    if (nombre.equals(ERROR_EMPTY) || nombre.equals(ERROR_LONG) || nombre.equals(ERROR_REPEATED))
+//                        return;
 
                     boolean isNombreModified = !nombre.equals(nombreOld);
 

@@ -69,7 +69,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 String email = cm.validate_EmailUsuario(txtMail.getText().toString(), false, (TextInputLayout) findViewById(R.id.txtLytUsername));
                 if (email == null) return;
 
-                String pass = cm.validate_ContraseniaUsuario(txtPass.getText().toString(), false, findViewById(R.id.txtLytPasswrod));
+                String pass = cm.validate_ContraseniaUsuario(txtPass.getText().toString(), false, (TextInputLayout) findViewById(R.id.txtLytPasswrod));
                 if (pass == null) return;
 
                 mAuth.signInWithEmailAndPassword(email, pass)
@@ -82,7 +82,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
                                     activityDone();
                                 } else {
-                                    cm.show_toast("Usuario invalido. Verificar credenciales");
+                                    cm.show_toast("Usuario inválido. Verificar credenciales");
                                 }
                             }
                         });

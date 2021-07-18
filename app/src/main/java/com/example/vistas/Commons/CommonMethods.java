@@ -78,22 +78,26 @@ public class CommonMethods implements Codes_Logs {
 
         if (length == 0) {
             if (alertError) show_toast(context.getString(R.string.error_txtNombre_empty));
+            if(inputLayout != null) inputLayout.setError(context.getString(R.string.error_txtNombre_empty));
             return null;
         }
 
         if (length < USUARIO_NOMBRE_MIN) {
             if (alertError) show_toast("EL nombre debe de ser mayor a 6 caracteres");
+            if(inputLayout != null) inputLayout.setError("EL nombre debe de ser mayor a 6 caracteres");
             return null;
         }
 
         if (length > USUARIO_NOMBRE_MAX) {
             if (alertError) show_toast(context.getString(R.string.error_txtNombre_long));
+            if(inputLayout != null) inputLayout.setError(context.getString(R.string.error_txtNombre_long));
             return null;
         }
 
         boolean patternOk = (Pattern.compile(PATTERN_NAME).matcher(rspt).matches());
         if (!patternOk) {
             if (alertError) show_toast("Nombre no valido.");
+            if(inputLayout != null) inputLayout.setError("Nombre no valido.");
             return null;
         }
 
@@ -142,16 +146,19 @@ public class CommonMethods implements Codes_Logs {
 
         if (length == 0) {
             if (alertError) show_toast(context.getString(R.string.error_txtContra_empty));
+            if(inputLayout != null) inputLayout.setError(context.getString(R.string.error_txtContra_empty));
             return null;
         }
 
         if (length < USUARIO_CONTRASENIA_MIN) {
             if (alertError) show_toast(context.getString(R.string.error_txtContra_short));
+            if(inputLayout != null) inputLayout.setError(context.getString(R.string.error_txtContra_short));
             return null;
         }
 
         if (length > USUARIO_CONTRASENIA_MAX) {
             if (alertError) show_toast(context.getString(R.string.error_txtContra_long));
+            if(inputLayout != null) inputLayout.setError(context.getString(R.string.error_txtContra_long));
             return null;
         }
 
@@ -205,22 +212,26 @@ public class CommonMethods implements Codes_Logs {
 
         if (length == 0) {
             if (alertError) show_toast(context.getString(R.string.error_txtNombre_empty));
+            if(inputLayout != null) inputLayout.setError(context.getString(R.string.error_txtNombre_empty));
             return null;
         }
 
         if (length < ITEM_NAME_MIN) {
             if (alertError) show_toast("El nombre debe de ser mayor a 2 caracteres");
+            if(inputLayout != null) inputLayout.setError("El nombre debe de ser mayor a 2 caracteres");
             return null;
         }
 
         if (length > ITEM_NAME_MAX) {
             if (alertError) show_toast(context.getString(R.string.error_txtNombre_long));
+            if(inputLayout != null) inputLayout.setError(context.getString(R.string.error_txtNombre_long));
             return null;
         }
 
         boolean patternOk = (Pattern.compile(PATTERN_NAME).matcher(rspt).matches());
         if (!patternOk) {
             if (alertError) show_toast("Nombre no valido.");
+            if(inputLayout != null) inputLayout.setError("Nombre no valido.");
             return null;
         }
 

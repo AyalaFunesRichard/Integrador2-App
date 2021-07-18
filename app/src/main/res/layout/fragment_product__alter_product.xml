@@ -24,7 +24,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/txtLytName"
+            android:id="@+id/txtLytName_alterProd"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -59,7 +59,7 @@
             android:orientation="vertical"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/txtLytName">
+            app:layout_constraintTop_toBottomOf="@+id/txtLytName_alterProd">
 
             <TextView
                 android:id="@+id/textView4"
