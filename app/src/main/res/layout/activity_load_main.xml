@@ -10,36 +10,41 @@
         android:id="@+id/lblLoadingText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
         android:text="Cargando datos..."
         android:textColor="@color/black_lighter"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/lblLoadingText2" />
-
-    <TextView
-        android:id="@+id/lblLoadingText2"
-        style="@style/Text_businessName"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
-        android:fontFamily="@font/business_font"
-        android:includeFontPadding="false"
-        android:text="MeFalta"
-        android:textColor="@color/colorPrimary"
-        android:textSize="50sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView4" />
 
     <ImageView
         android:id="@+id/imageView4"
-        android:layout_width="213dp"
-        android:layout_height="227dp"
-        android:layout_marginTop="76dp"
+        android:layout_width="255dp"
+        android:layout_height="336dp"
+        android:layout_marginTop="48dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/lblLoadingText2"
         app:srcCompat="@drawable/ic_logo" />
+
+    <TextView
+        android:id="@+id/lblLoadingText2"
+        android:layout_width="322dp"
+        android:layout_height="124dp"
+        android:layout_marginStart="1dp"
+        android:layout_marginTop="48dp"
+        android:layout_marginEnd="1dp"
+        android:fontFamily="sans-serif"
+        android:gravity="center"
+        android:includeFontPadding="false"
+        android:text="Estudio contable Hurtado y asociados"
+        android:textColor="@color/black_lighter2"
+        android:textSize="36sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.492"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
